@@ -1,5 +1,9 @@
 package waa.green.repository;
 
-public class StudentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import waa.green.model.Student;
+
+public interface StudentRepository extends CrudRepository<Student , Long>{
 
 }
