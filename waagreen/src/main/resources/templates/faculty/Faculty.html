@@ -4,7 +4,9 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-   
+  <script type="text/javascript"
+	th:href="@{/js/faculty.js}"></script>
+  
 </head>
 <body>
 
@@ -41,33 +43,30 @@
 <select >
 <option>WAA </option>
 <option>MWA </option></select>
-<input type="submit" class="button is-link" value="Repory">
+<input type="submit" class="button is-link" value="Repory" id="submitBtn">
 </form>
-<table class="table is-fullwidth is-hoverable">
+<table class="table is-fullwidth is-hoverable" id="result">
   <thead>
     <tr>
       <th> ID </th>
       <th> NAME</th>
       <th> EMAIL ADDRESS</th>
-      <th> EXAM</th>
-      <th> STATUS</th>
-      <th>SEND RESULT</th>
+      <th> MEDITATION DAYS</th>
+      <th> MEDITATION PERCENTAGE</th>
+      <th>EXTRA POINTS</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let stuinfo of studentinfo;let idn=index'>
-      <td>{{idn+1}}</td>
-      <td>{{stuinfo.name}}</td>
-      <td class="has-text-weight-bold">{{stuinfo.email}}</td>
+    <tr>
+      <td></td>
+      <td></td>
+      <td ></td>
       <td>
-        <button class="button is-link" type="submit" (click)='[sendinvitation(stuinfo.email,stuinfo.status)]'>Invite</button>
-      </td>
-      <div *ngIf=""></div>
-      <td class="has-text-weight-bold">{{stuinfo.status}}</td>
+         </td>
+     
+      <td ></td>
       <td>
-        <p appIsdisabled [result]='stuinfo.status'><button class="button is-success" type="submit" (click)='[sendemail(stuinfo.email,stuinfo.status)]'>Send
-          </button></p>
-
+         
       </td>
     </tr>
   </tbody>
@@ -76,9 +75,9 @@
       <th> ID </th>
       <th> NAME</th>
       <th> EMAIL ADDRESS</th>
-      <th> EXAM</th>
-      <th> STATUS</th>
-      <th>SEND RESULT</th>
+      <th> MEDITATION DAYS</th>
+      <th> MEDITATION PERCENTAGE</th>
+      <th>EXTRA POINTS</th>
     </tr>
   </tfoot>
 </table>
