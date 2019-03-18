@@ -14,11 +14,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "WEEK_SESSION")
 public class Session {
     @Id
     @Column(name = "session_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "session_type")
     private String type;
     private int days;
 
