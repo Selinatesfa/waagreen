@@ -1,4 +1,9 @@
 package waa.green.controller;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,49 +15,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import waa.green.model.Role;
 import waa.green.model.User;
+import waa.green.service.RoleService;
 import waa.green.service.UserService;
 @Controller
 public class LoginController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	RoleService roleservice;
 	
 	@GetMapping( "/login" )
     public ModelAndView login(){
+		 Role r= new Role();
+	        r.setRole("ADMIN");
+	        roleservice.saverole(r);
+	        Set<Role> rolelist= new HashSet<>();
+	        rolelist.add(r);
+		User user= new User("selina@gmail.com","123456","ss","sss",1,rolelist);
+		userService.saveUser(user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
     }
+ 
  @GetMapping("/home")
  public String home() {
 	 return "home";
  }
-	 @GetMapping("/registration")
-	    public ModelAndView registration(){
-		 	        ModelAndView modelAndView = new ModelAndView();
-	        User user = new User();
-	        modelAndView.addObject("user", user);
-	        modelAndView.setViewName("registration");
-	        return modelAndView;
-	    }
-
-	    @PostMapping(value = "/registration")
-	    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-	        ModelAndView modelAndView = new ModelAndView();
-	        User userExists = userService.findUserByEmail(user.getEmail());
-	        if (userExists != null) {
-	            bindingResult
-	                    .rejectValue("email", "error.user",
-	                            "There is already a user registered with the email provided");
-	        }
-	        if (bindingResult.hasErrors()) {
-	            modelAndView.setViewName("registration");
-	        } else {
-	            userService.saveUser(user);
-	           // modelAndView.addObject("successMessage", "User has been registered successfully");
-	            //modelAndView.addObject("user", new User());
-	            modelAndView.setViewName("/login");
-	        }
-	        return modelAndView;
-	    }
+	
 	    }
