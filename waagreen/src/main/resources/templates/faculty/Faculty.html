@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+   
+</head>
+<body>
+
+<nav class="navbar is-dark">
+	<div class="container">
+	<div class="navbar-brand">
+		<a class="navbar-item" href="https://bulma.io"> 
+			<h1>ADMIN</h1>	
+		</a>
+	</div>
+<div class="navbar-brand">
+		<a class="navbar-item" href="https://bulma.io"> 
+		<h1>FACULTY</h1>
+			</a>
+	</div>
+	<div class="navbar-brand">
+		<a class="navbar-item" href="https://bulma.io"> 
+		<h1>STUDENT</h1>
+			</a>
+	</div>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+			
+		</div>
+	</div>
+	</div>
+</nav>
+<br>
+<div class="admin container">
+<form action="/login" method="get">
+<select >
+<option>Feb 2019</option> 
+<option>Nov 2018</option> </select>
+<select >
+<option>WAA </option>
+<option>MWA </option></select>
+<input type="submit" class="button is-link" value="Repory">
+</form>
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+    <tr>
+      <th> ID </th>
+      <th> NAME</th>
+      <th> EMAIL ADDRESS</th>
+      <th> EXAM</th>
+      <th> STATUS</th>
+      <th>SEND RESULT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let stuinfo of studentinfo;let idn=index'>
+      <td>{{idn+1}}</td>
+      <td>{{stuinfo.name}}</td>
+      <td class="has-text-weight-bold">{{stuinfo.email}}</td>
+      <td>
+        <button class="button is-link" type="submit" (click)='[sendinvitation(stuinfo.email,stuinfo.status)]'>Invite</button>
+      </td>
+      <div *ngIf=""></div>
+      <td class="has-text-weight-bold">{{stuinfo.status}}</td>
+      <td>
+        <p appIsdisabled [result]='stuinfo.status'><button class="button is-success" type="submit" (click)='[sendemail(stuinfo.email,stuinfo.status)]'>Send
+          </button></p>
+
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th> ID </th>
+      <th> NAME</th>
+      <th> EMAIL ADDRESS</th>
+      <th> EXAM</th>
+      <th> STATUS</th>
+      <th>SEND RESULT</th>
+    </tr>
+  </tfoot>
+</table>
+</div>
+
+</body>
+</html>
