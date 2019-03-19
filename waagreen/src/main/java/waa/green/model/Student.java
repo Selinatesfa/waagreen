@@ -27,7 +27,7 @@ public class Student {
     private String lastName;
     @Column( name = "date_of_entry")
     @DateTimeFormat(pattern = "mm-yyyy")
-    private Date dateOfEntry;
+    private String dateOfEntry;/*Aug 2018*/
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "code_id", nullable = false)
