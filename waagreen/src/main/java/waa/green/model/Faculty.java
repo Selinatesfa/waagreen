@@ -27,6 +27,4 @@ public class Faculty {
     @Fetch(FetchMode.JOIN)
     private List<Course> courses;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facultyStd")
-    private List<Student> students;
 }

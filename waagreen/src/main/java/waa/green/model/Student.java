@@ -31,10 +31,6 @@ public class Student {
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
 
-       @ManyToOne
-    @JoinColumn(name = "faculty_id")
-    private Faculty facultyStd;
-
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
-    private Set<Course> courses = new HashSet<>();
+    private Set<Course> students = new HashSet<>();
 }

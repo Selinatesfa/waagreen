@@ -24,6 +24,6 @@ public class Session {
     private String type;
     private int days;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "sessions")
+    @ManyToMany(mappedBy = "sessions")
     private Set<Block> blocks = new HashSet<>();
 }
