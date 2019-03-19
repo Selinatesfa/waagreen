@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -19,6 +21,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 public class Block {
     @Id
@@ -47,4 +50,75 @@ public class Block {
             joinColumns = @JoinColumn(name = "block_id"),
             inverseJoinColumns = @JoinColumn(name = "session_id"))
     private Set<Session> sessions = new HashSet<>();
+
+	@Override
+	public String toString() {
+		return "Block [startDate=" + startDate + ", endDate=" + endDate + ", yearEntry=" + yearEntry
+				+ ", numberOfBlock=" + numberOfBlock + ", courses=" + courses + ", attendances=" + attendances + "]";
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getYearEntry() {
+		return yearEntry;
+	}
+
+	public void setYearEntry(Date yearEntry) {
+		this.yearEntry = yearEntry;
+	}
+
+	public int getNumberOfBlock() {
+		return numberOfBlock;
+	}
+
+	public void setNumberOfBlock(int numberOfBlock) {
+		this.numberOfBlock = numberOfBlock;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	public List<Attendance> getAttendances() {
+		return attendances;
+	}
+
+	public void setAttendances(List<Attendance> attendances) {
+		this.attendances = attendances;
+	}
+
+	public Set<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(Set<Session> sessions) {
+		this.sessions = sessions;
+	}
+
 }

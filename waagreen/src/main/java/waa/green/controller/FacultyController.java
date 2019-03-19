@@ -26,14 +26,23 @@ public class FacultyController {
 	
 	@GetMapping("/faculty")
 	 public String faculty(Model model) {
-				model.addAttribute("block", facultyservice.getAllBlock());
+						model.addAttribute("block", facultyservice.getAllBlock());
 		model.addAttribute("course", facultyservice.getAllCourse());
+		
 		 return "faculty/Faculty";
 	 }
 	
-	@PostMapping("/faculty")
+	@GetMapping("/Restfaculty")
 	 public @ResponseBody List<Attendance> facultyreport( @RequestParam String course, @RequestParam String block) {
 		
 		 return facultyservice.generatereportbycourseandblock(course, block);
 	 }
+	@GetMapping("/facultyreport")
+	public String facultyreportpost(@RequestParam String course, @RequestParam String block,Model model)
+	{
+		System.out.println(course+ block);
+		//model.addAttribute("report", facultyservice.generatereportbycourseandblock(course, block));
+		//System.out.println( facultyservice.generatereportbycourseandblock(course, block));
+		return "facultyreport";
+	}
 }
