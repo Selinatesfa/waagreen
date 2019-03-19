@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 public class Faculty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "faculty_id")
     private long id;
     private String name;
@@ -27,6 +27,4 @@ public class Faculty {
     @Fetch(FetchMode.JOIN)
     private List<Course> courses;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facultyStd")
-    private List<Student> students;
 }

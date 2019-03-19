@@ -20,6 +20,8 @@ public class Location {
     private long id;
     @Column(name = "location_name")
     private String name;
+    @Column(name = "short_name")
+    private String shortName;
 
     @OneToMany(mappedBy = "location")
     private List<Attendance> attendances;

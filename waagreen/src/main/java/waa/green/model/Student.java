@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,7 +18,7 @@ import java.util.Set;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
     private long id;
     @Column(name = "first_name")
@@ -25,15 +26,12 @@ public class Student {
     @Column( name = "last_name")
     private String lastName;
     @Column( name = "date_of_entry")
+    @DateTimeFormat(pattern = "mm-yyyy")
     private Date dateOfEntry;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
-
-       @ManyToOne
-    @JoinColumn(name = "faculty_id")
-    private Faculty facultyStd;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
