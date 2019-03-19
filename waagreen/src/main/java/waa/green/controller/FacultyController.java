@@ -42,7 +42,7 @@ public class FacultyController {
 	{
 		//System.out.println(course+ block);
 		model.addAttribute("report", facultyservice.generatereportbycourseandblock(course, block));
-		//System.out.println( facultyservice.generatereportbycourseandblock(course, block));
+	System.out.println( facultyservice.generatereportbycourseandblock(course, block));
 		return "facultyreport";
 	}
 }
