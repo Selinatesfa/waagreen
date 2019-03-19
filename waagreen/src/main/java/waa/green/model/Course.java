@@ -17,15 +17,15 @@ import java.util.Set;
 @Entity
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "course_name")
     private String courseName;
     @Column(name = "course_id")
     private String courseId;
-    @Column(name = "grade")
+    @Column(name = "grade", columnDefinition ="Decimal(10,2) default '0.00'")
     private Double grade;
-    @Column(name = "")
+    @Column(name = "extra_grade", columnDefinition ="Decimal(10,2) default '0.00'")
     private Double extraGrade;
     @Column(name = "course_credit")
     private Integer credit;

@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
     private long id;
     @Column(name = "first_name")
@@ -30,16 +30,6 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
-
-    @ManyToMany
-    @JoinTable(name = "student_attendance",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "attend_id"))
-    private Set<Attendance> attendances = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "faculty_id")
-    private Faculty facultyStd;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();

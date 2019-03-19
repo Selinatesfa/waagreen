@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 public class Attendance {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "attend_id")
     private long id;
     @Column( name = "attendance_date")
@@ -28,7 +28,8 @@ public class Attendance {
     private Integer present;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Student students;
+    @JoinColumn(name = "student_id")
+    private Student student;
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "location_id")
