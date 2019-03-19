@@ -20,7 +20,7 @@ import java.util.Set;
 @Entity
 public class Block {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private long id;
     @Column(name = "start_date")
@@ -30,15 +30,10 @@ public class Block {
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
-    private Date monthBlock;
+    private int numberOfBlock;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
-
-    @ManyToOne
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "session_id")
-    private Session session;
 
     @OneToMany(mappedBy = "block")
     private List<Attendance> attendances;
