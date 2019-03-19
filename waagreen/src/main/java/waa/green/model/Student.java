@@ -31,13 +31,7 @@ public class Student {
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
 
-    @ManyToMany
-    @JoinTable(name = "student_attendance",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "attend_id"))
-    private Set<Attendance> attendances = new HashSet<>();
-
-    @ManyToOne
+       @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty facultyStd;
 
