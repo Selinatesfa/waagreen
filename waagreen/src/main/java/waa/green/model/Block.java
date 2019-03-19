@@ -25,13 +25,10 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private long id;
-//    @Column(name = "start_date")
-//    private Date startDate;
-//    @Column(name = "end_date")
-//    private Date endDate;
-    @Valid
-    @Column(name="block_date")
-   private BlockDate blockdate;
+    @Column(name = "start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    private Date endDate;
    
     @Column( name = "year_of_entry")
     private Date yearEntry;
