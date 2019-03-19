@@ -32,8 +32,6 @@ public class Block {
     private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
-
-          
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
@@ -45,11 +43,9 @@ public class Block {
     @OneToMany(mappedBy = "block")
     private List<Attendance> attendances;
 
-    @ManyToMany
-    @JoinTable(name = "block_session",
-            joinColumns = @JoinColumn(name = "block_id"),
-            inverseJoinColumns = @JoinColumn(name = "session_id"))
-    private Set<Session> sessions = new HashSet<>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "session_id")
+	private Session session;
 
 	@Override
 	public String toString() {
@@ -112,13 +108,4 @@ public class Block {
 	public void setAttendances(List<Attendance> attendances) {
 		this.attendances = attendances;
 	}
-
-	public Set<Session> getSessions() {
-		return sessions;
-	}
-
-	public void setSessions(Set<Session> sessions) {
-		this.sessions = sessions;
-	}
-
 }
