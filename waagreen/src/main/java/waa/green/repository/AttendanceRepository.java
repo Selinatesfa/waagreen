@@ -13,9 +13,10 @@ import java.util.Date;
 
 @Repository
 public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
-	@Query(value="select a from Attendance a where :course MEMBER OF a.student.courses and a.block=:block")
+	@Query(value="select a from Attendance ")
+			//+ "a where :course MEMBER OF a.student.courses and a.block=:block.startDate")
 	public List<Attendance> generatereportbycourseandblock(String course, String block);
 
-    @Query(value = "select a from Attendance a where a.students.dateOfEntry =:dateOfEntry")
+    @Query(value = "select a from Attendance a where a.student.dateOfEntry =:dateOfEntry")
     public List<Attendance> generateReportByEntry(Date dateOfEntry);
 }

@@ -1,32 +1,26 @@
-// pathname is contextRoot/path/path/ so we want to get [1] 
-// that is where contextRoot is
-// [0] has "" as a result of split 
-var contextRoot = "/" + window.location.pathname.split('/')[1];
+window.onload= function(){
+		document.getElementById('mybtn').onclick= clickStart;
+	var bl=document.getElementById('blockid').value;
+var cr=	document.getElementById('courseid').value;
+	alert(bl+cr)
+}
 
-function serializeObject(form) {
-	var jsonObject = {};
-	var array = form.serializeArray();
-	$.each(array, function() {
-		jsonObject[this.name] = this.value;
-	});
-	return jsonObject;
-};
-$( document ).ready(function() {
-	$('#result').hide();
-	
-	$('#submitBtn').click(function(event){
-		event.preventDefault();
-				//var dataToSend = JSON.stringify(serializeObject($('#categoryForm')));
+var contextRoot = "/" + window.location.pathname.split('/')[1];
+//
+
+function clickStart(){
+	//$('#result').hide();
+	//alert(bl + cr);
+//							
 		$.ajax({
 			type : 'GET',
-			url : contextRoot + 'faculty/faculty',
-			dataType : "json", // Accept header
-			//data : dataToSend,
-			contentType : 'application/json', // Sends - Content-type
+			url : contextRoot + 'faculty/Restfaculty?blook=' +bl +"?course="+cr,
+			dataType : "json",
+						contentType : 'application/json', 
 			success : function(response) {
-					$("#result").append();
-				
-				$('#result').show();
+//					$("#result").append();
+//				
+//				$('#result').show();
 				alert("succes");
 			},
 			error : function(errorObject) {
@@ -35,9 +29,18 @@ $( document ).ready(function() {
 					alert("error")
 				}
 			}
-		});
-		
-	});  
-});
+	};
+	function getSelectedOption(sel) {
+	    var opt;
+	    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+	        opt = sel.options[i];
+	        if ( opt.selected === true ) {
+	            break;
+	        }
+	    }
+	    return opt;
+	}
+
+
 
 
