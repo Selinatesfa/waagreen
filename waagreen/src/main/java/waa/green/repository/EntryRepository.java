@@ -9,6 +9,5 @@ import java.util.Date;
 import java.util.List;
 @Repository
 public interface EntryRepository extends CrudRepository<Entry,Long> {
-    @Query(value = "select a.student.entry.montYear from Attendance a ")
-    public List<Entry> findAll();
+       public List<Entry> findAll();
 }

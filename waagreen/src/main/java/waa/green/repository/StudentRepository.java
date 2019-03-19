@@ -12,8 +12,6 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student,Long> {
-    @Query(value = "select a.student.dateOfEntry from Attendance a ")
-    public List<Date> findallDateOfEntry();
 
     @Query("SELECT stu FROM Student stu WHERE stu.id =:id")
     Attendance attendanceInfoAccumulative(@Param("id") Long id);
