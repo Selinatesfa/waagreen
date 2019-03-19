@@ -39,7 +39,7 @@
 <form >
 <label th:text="BLOCK">BLOCK:</label>
 <select th:each="b:${block}" >
-<option th:text="${b.blockdate}"></option> 
+<option th:text="${b.startDate}"></option> 
 </select>
 <label>COURSE:</label><select th:each="c:${course}">
 <option th:text="${c.name}">WAA </option></select>

@@ -29,7 +29,8 @@ public class Block {
     private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
-   
+
+          
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
