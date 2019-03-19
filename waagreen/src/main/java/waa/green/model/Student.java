@@ -31,16 +31,10 @@ public class Student {
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
 
-    @ManyToMany
-    @JoinTable(name = "student_attendance",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "attend_id"))
-    private Set<Attendance> attendances = new HashSet<>();
-
-    @ManyToOne
+       @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty facultyStd;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
-    private Set<Course> students = new HashSet<>();
+    private Set<Course> courses = new HashSet<>();
 }

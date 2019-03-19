@@ -19,7 +19,7 @@ $( document ).ready(function() {
 				//var dataToSend = JSON.stringify(serializeObject($('#categoryForm')));
 		$.ajax({
 			type : 'GET',
-			url : contextRoot + '/addCategory',
+			url : contextRoot + 'faculty/faculty',
 			dataType : "json", // Accept header
 			//data : dataToSend,
 			contentType : 'application/json', // Sends - Content-type
@@ -27,11 +27,12 @@ $( document ).ready(function() {
 					$("#result").append();
 				
 				$('#result').show();
+				alert("succes");
 			},
 			error : function(errorObject) {
 										
-					alert(errorObject.responseJSON.errors(0)); 
-					
+					//alert(errorObject.responseJSON.errors(0)); 
+					alert("error")
 				}
 			}
 		});

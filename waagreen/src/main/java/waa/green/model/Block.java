@@ -8,6 +8,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -23,10 +25,14 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private long id;
-    @Column(name = "start_date")
-    private Date startDate;
-    @Column(name = "end_date")
-    private Date endDate;
+//    @Column(name = "start_date")
+//    private Date startDate;
+//    @Column(name = "end_date")
+//    private Date endDate;
+    @Valid
+    @Column(name="block_date")
+   private BlockDate blockdate;
+   
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
