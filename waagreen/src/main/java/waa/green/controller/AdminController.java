@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import waa.green.model.Attendance;
 import waa.green.model.User;
-import waa.green.service.AdminService;
-import waa.green.service.AttendanceService;
-import waa.green.service.StudentService;
-import waa.green.service.UserService;
+import waa.green.service.*;
 
 import java.sql.Struct;
 import java.text.DateFormat;
@@ -29,24 +26,25 @@ public class AdminController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	AdminService adminservice;
+    EntryService entryservice;
 
 	@RequestMapping("/admin")
 	public String admin(Model model){
-		model.addAttribute("entry",adminservice.findAllEntry());
+		model.addAttribute("entry",entryservice.findAllEntry());
 		return "Admin/generateReportByEntry";
 	}
 	@RequestMapping(value="/admin", method= RequestMethod.POST)
 	public @ResponseBody List<Attendance> showReport(@RequestParam("entry") String entry) {
-     //   DateFormat df = new SimpleDateFormat(" mm-yyyy");
 
-                 //  Date result =  df.parse(entry);
-           return  adminservice.generateReportByEntry(entry);
+
+                 
+           return  entryservice.generateReportByEntry(entry);
         
-
+             
 	
 	}
-	 @GetMapping("/registration")
+
+				 @GetMapping("/registration")
 	    public ModelAndView registration(){	
 		 ModelAndView modelAndView = new ModelAndView();
 //	        modelAndView.addObject("user", user);

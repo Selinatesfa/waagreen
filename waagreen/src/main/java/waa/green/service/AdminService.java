@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface AdminService {
+
 	 public List<Attendance> generateReportByEntry(String dateOfEntry);
     public List<Date> findAllEntry();
+
 }
