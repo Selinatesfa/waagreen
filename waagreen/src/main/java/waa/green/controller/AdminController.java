@@ -4,35 +4,50 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import waa.green.model.Attendance;
 import waa.green.model.User;
+import waa.green.service.AdminService;
 import waa.green.service.AttendanceService;
 import waa.green.service.StudentService;
 import waa.green.service.UserService;
+
+import java.sql.Struct;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	AttendanceService attendanceService;
+	AdminService adminservice;
 
 	@RequestMapping("/admin")
-	public String admin(){
-		ModelAndView modelAndView = new ModelAndView();
-		return "generateReportByEntry";
+	public String admin(Model model){
+		model.addAttribute("entry",adminservice.findAllEntry());
+		return "Admin/generateReportByEntry";
 	}
 	@RequestMapping(value="/admin", method= RequestMethod.POST)
-	public String showReport(@Valid Attendance attendance,BindingResult result) {
-		//Attendance atendance = attendanceService.generateReportByEntry();
-		return "generateReportByEntry";
+	public @ResponseBody List<Attendance> showReport(@RequestParam("entry") String entry) {
+        DateFormat df = new SimpleDateFormat(" mm-yyyy");
+
+        try {
+            Date result =  df.parse(entry);
+           return  adminservice.generateReportByEntry(result);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+		return null;
 	}
 	 @GetMapping("/registration")
 	    public ModelAndView registration(){	
