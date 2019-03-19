@@ -13,4 +13,5 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 	@Query(value="select a from Attendance a where :course MEMBER OF a.students.courses and a.block=:block")
 	public List<Attendance> generatereportbycourseandblock(String course, String block);
 	
+	
 }
