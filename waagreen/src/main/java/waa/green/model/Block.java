@@ -25,15 +25,11 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "block_id")
     private long id;
-//    @Column(name = "start_date")
-//    private Date startDate;
-//    @Column(name = "end_date")
-//    private Date endDate;
-    @Valid
-    @Column(name="block_date")
-   private BlockDate blockdate;
-   
-    @Column( name = "year_of_entry")
+    @Column(name = "start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    private Date endDate;
+         @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
     private Date monthBlock;
