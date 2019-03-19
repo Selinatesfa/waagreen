@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <script type="text/javascript"
+            th:href="@{/js/faculty.js}"></script>
+
 </head>
 <body>
-welcome page
-<form  modelAttribute="/admin" method="post">
-    <select id="entry">
-        <option>Select Entry</option>
-        <option>February 2017</option>
-        <option>April 2017</option>
-        <option>August 2017</option>
-        <option>October 2017</option>
-        <option>February 2018</option>
-        <option>August 2018</option>
-        <option>October 2018</option>
-            </select>
-    <input type="submit" value="Report">
-</form>
+
+<nav class="navbar is-dark">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <h1>ADMIN</h1>
+            </a>
+        </div>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <h1>FACULTY</h1>
+            </a>
+        </div>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <h1>STUDENT</h1>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+
+            </div>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="admin container">
+    <form >
+        <label th:text="ENTRY">ENTRY:</label>
+        <select  >
+            <option th:each="b:${entry}" th:text="${b}"></option>
+        </select>
+        <input type="button" class="button is-link" value="Report" id="submitBtn">
+    </form>
+    <table class="table is-fullwidth is-hoverable" id="result">
+        <thead>
+        <tr>
+            <th> ID </th>
+            <th> NAME</th>
+            <th> EMAIL ADDRESS</th>
+            <th> MEDITATION DAYS</th>
+            <th> MEDITATION PERCENTAGE</th>
+            <th>EXTRA POINTS</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <th> ID </th>
+            <th> NAME</th>
+            <th> EMAIL ADDRESS</th>
+            <th> MEDITATION DAYS</th>
+            <th> MEDITATION PERCENTAGE</th>
+            <th>EXTRA POINTS</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
 </body>
 </html>
