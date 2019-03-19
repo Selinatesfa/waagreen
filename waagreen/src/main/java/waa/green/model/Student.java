@@ -42,5 +42,5 @@ public class Student {
     private Faculty facultyStd;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
-    private Set<Course> students = new HashSet<>();
+    private Set<Course> courses = new HashSet<>();
 }

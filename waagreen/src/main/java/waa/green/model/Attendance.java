@@ -27,8 +27,8 @@ public class Attendance {
     private String period;
     private Integer present;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "attendances")
-    private Set<Student> students = new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Student students;
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "location_id")

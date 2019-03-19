@@ -36,14 +36,14 @@
 </nav>
 <br>
 <div class="admin container">
-<form action="/login" method="get">
-<select >
-<option>Feb 2019</option> 
-<option>Nov 2018</option> </select>
-<select >
-<option>WAA </option>
-<option>MWA </option></select>
-<input type="submit" class="button is-link" value="Repory" id="submitBtn">
+<form >
+<label th:text="BLOCK">BLOCK:</label>
+<select th:each="b:${block}" >
+<option th:text="${b.startDate}"></option> 
+</select>
+<label>COURSE:</label><select th:each="c:${course}">
+<option th:text="${c.name}">WAA </option></select>
+<input type="button" class="button is-link" value="Report" id="submitBtn">
 </form>
 <table class="table is-fullwidth is-hoverable" id="result">
   <thead>
@@ -57,18 +57,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td>
-         </td>
-     
-      <td ></td>
-      <td>
-         
-      </td>
-    </tr>
+   
   </tbody>
   <tfoot>
     <tr>
