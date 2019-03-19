@@ -27,12 +27,36 @@ public class Student {
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entry")
-  private Entry entry;
-  
+    private Entry entry;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

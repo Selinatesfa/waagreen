@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Computer ProfessionalS Program </title>
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
+    <script type="text/javascript"
+            th:href="@{/js/student.js}"></script>
+</head>
+<body>
+
+<p>
+    <!--/*@thymesVar id="student" type="templates"*/-->
+    <form action="#" th:action="@{/student}" th:object="${student}" method="get">
+        <fieldset>
+            <p>
+            <legend>
+                <span th:text="#{student.form.title}">Accumulative Attendance Info</span>
+            </legend>
+
+     </p>
+            <p id="buttons">
+                <input id="submit" type="submit" tabindex="5" th:value="#{student.form.viewbtn}" value="View Student">
+            </p>
+        </fieldset>
+    </form>
+
+</p>
+</body>
+</html>
