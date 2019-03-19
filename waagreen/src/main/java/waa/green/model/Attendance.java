@@ -44,4 +44,5 @@ public class Attendance {
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "block_id")
     private Block block;
+
 }
