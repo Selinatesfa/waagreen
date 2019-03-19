@@ -15,4 +15,14 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+<<<<<<< HEAD
+    @Override
+    public List<Attendance> generateReportByEntry(String dateOfEntry) {
+        return attendanceRepository.generateReportByEntry(dateOfEntry);
+    }
+        public List<Date> findAllEntry() {
+        return (List<Date>) studentRepository.findallDateOfEntry();
+    }
+=======
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 }

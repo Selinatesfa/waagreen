@@ -11,5 +11,6 @@ public interface FacultyService {
 public List<Attendance> generatereportbycourseandblock(String coures,String block);
 public List<Block> getAllBlock();
 public List<Course> getAllCourse();
+public double calculateextrapoints(String blocktype,int noofmeditation);
 
 }
