@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Student {
     @Column( name = "last_name")
     private String lastName;
     @Column( name = "date_of_entry")
+    @DateTimeFormat(pattern = "mm-yyyy")
     private Date dateOfEntry;
 
     @OneToOne(cascade = CascadeType.ALL)
