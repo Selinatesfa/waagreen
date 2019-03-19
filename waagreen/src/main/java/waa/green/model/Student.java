@@ -27,7 +27,7 @@ public class Student {
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entry")
-  private Entry entry;
+    private Entry entry;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "code_id", nullable = false)
