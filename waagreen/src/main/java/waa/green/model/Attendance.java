@@ -28,7 +28,8 @@ public class Attendance {
     private Integer present;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Student students;
+    @JoinColumn(name = "student_id")
+    private Student student;
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "location_id")
