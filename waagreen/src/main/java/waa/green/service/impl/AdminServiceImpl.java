@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService {
     StudentRepository studentRepository;
 
     @Override
-    public List<Attendance> generateReportByEntry(Date dateOfEntry) {
+    public List<Attendance> generateReportByEntry(String dateOfEntry) {
         return attendanceRepository.generateReportByEntry(dateOfEntry);
     }
         public List<Date> findAllEntry() {

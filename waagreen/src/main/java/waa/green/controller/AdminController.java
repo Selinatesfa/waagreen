@@ -38,16 +38,13 @@ public class AdminController {
 	}
 	@RequestMapping(value="/admin", method= RequestMethod.POST)
 	public @ResponseBody List<Attendance> showReport(@RequestParam("entry") String entry) {
-        DateFormat df = new SimpleDateFormat(" mm-yyyy");
+     //   DateFormat df = new SimpleDateFormat(" mm-yyyy");
 
-        try {
-            Date result =  df.parse(entry);
-           return  adminservice.generateReportByEntry(result);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+                 //  Date result =  df.parse(entry);
+           return  adminservice.generateReportByEntry(entry);
+        
 
-		return null;
+	
 	}
 	 @GetMapping("/registration")
 	    public ModelAndView registration(){	
