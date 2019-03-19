@@ -39,6 +39,12 @@ CourseRepository courserepository;
 		return courserepository.findAll();
 	}
 
+	@Override
+	public double calculateextrapoints(String blocktype, int noofmeditation) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }
