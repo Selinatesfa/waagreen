@@ -5,8 +5,8 @@ INSERT INTO attendance_type(type) VALUES('TM Checking');
 INSERT INTO attendance_type(type) VALUES('Retreat');
 INSERT INTO attendance_type(type) VALUES('DC Lecture');
 
-INSERT INTO location(location_name,short_name) VALUES('Golden dom',"GD");
-INSERT INTO location(location_name,short_name) VALUES('Argiro Dalby Hall',"DB");
+INSERT INTO location(location_name,short_name) VALUES('Golden dom','GD');
+INSERT INTO location(location_name,short_name) VALUES('Argiro Dalby Hall','DB');
 
 INSERT INTO WEEK_SESSION (session_type,days) VALUES('4 weeks', 22);
 INSERT INTO WEEK_SESSION (session_type,days) VALUES('2 weeks', 10);
