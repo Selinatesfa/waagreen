@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -45,4 +46,84 @@ public class Course {
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "block_id"))
     private Set<Block> blocks = new HashSet<>();
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public Double getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Double grade) {
+		this.grade = grade;
+	}
+
+	public Double getExtraGrade() {
+		return extraGrade;
+	}
+
+	public void setExtraGrade(Double extraGrade) {
+		this.extraGrade = extraGrade;
+	}
+
+	public Integer getCredit() {
+		return credit;
+	}
+
+	public void setCredit(Integer credit) {
+		this.credit = credit;
+	}
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+	public Set<Block> getBlocks() {
+		return blocks;
+	}
+
+	public void setBlocks(Set<Block> blocks) {
+		this.blocks = blocks;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", courseId=" + courseId + ", grade=" + grade
+				+ ", extraGrade=" + extraGrade + ", credit=" + credit + ", faculty=" + faculty + ", students="
+				+ students + ", blocks=" + blocks + "]";
+	}
+
 }

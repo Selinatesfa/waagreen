@@ -4,9 +4,8 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-  <script type="text/javascript"
-	th:href="@{/js/faculty.js}"></script>
   
+ 
 </head>
 <body>
 
@@ -36,14 +35,14 @@
 </nav>
 <br>
 <div class="admin container">
-<form >
+<form th:action="@{/faculty/facultyreport}" th:method="GET" >
 <label th:text="BLOCK">BLOCK:</label>
-<select th:each="b:${block}" >
-<option th:text="${b.startDate}"></option> 
+<select id="blockid" name="block">
+<option  th:each="bl : ${block}" th:text="${bl.startDate}" >hjjh</option> 
 </select>
-<label>COURSE:</label><select th:each="c:${course}">
-<option th:text="${c.name}">WAA </option></select>
-<input type="button" class="button is-link" value="Report" id="submitBtn">
+<label>COURSE:</label><select id="courseid"  name="course">
+<option  th:each= "cr : ${course}" th:text="${cr.courseName}">WAA </option></select>
+<input type="submit" class="button is-link" value="Report" id="mybtn" />
 </form>
 <table class="table is-fullwidth is-hoverable" id="result">
   <thead>
@@ -71,6 +70,7 @@
   </tfoot>
 </table>
 </div>
-
+<script type="text/javascript" src="/js/faculty.js"  ></script>
 </body>
+
 </html>

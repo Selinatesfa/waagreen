@@ -24,8 +24,8 @@ CourseRepository courserepository;
 	@Override
 	public List<Attendance> generatereportbycourseandblock(String coures, String block) {
 		
-		//return attendacerepositort.generatereportbycourseandblock(coures, block);
-	return null;
+		return attendacerepositort.generatereportbycourseandblock(coures, block);
+	//return null;
 	}
 
 	@Override
@@ -36,7 +36,6 @@ CourseRepository courserepository;
 
 	@Override
 	public List<Course> getAllCourse() {
-		// TODO Auto-generated method stub
 		return courserepository.findAll();
 	}
 
