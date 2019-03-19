@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
     private long id;
     @Column(name = "first_name")
@@ -32,5 +32,5 @@ public class Student {
     private Code code;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
-    private Set<Course> students = new HashSet<>();
+    private Set<Course> courses = new HashSet<>();
 }
