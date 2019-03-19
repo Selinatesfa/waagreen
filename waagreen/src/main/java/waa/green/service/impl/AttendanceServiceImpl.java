@@ -1,4 +1,8 @@
 package waa.green.service.impl;
 
-public class AttendanceServiceImpl {
+import org.springframework.stereotype.Service;
+import waa.green.service.AttendanceService;
+
+@Service
+public class AttendanceServiceImpl implements AttendanceService {
 }
