@@ -50,6 +50,25 @@ public class Block {
 	@JoinColumn(name = "session_id")
 	private Session session;
 
+<<<<<<< HEAD
+	public Integer getCanceledDays() {
+		return canceledDays;
+	}
+
+	public void setCanceledDays(Integer canceledDays) {
+		this.canceledDays = canceledDays;
+	}
+
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
+
+=======
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 	public Session getSession() {
 		return session;
 	}

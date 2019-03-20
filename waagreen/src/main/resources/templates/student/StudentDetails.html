@@ -16,27 +16,28 @@
     Percent attendance: <br/>
     Block:
     <div>
-        <form action="/student/studentDetails" method="get">
-            <select class="blue-margin">
+        <form th:action="@{/student/studentDetails}" method="get">
+            <select class="blue-margin" name="block">
                 <option value="default">Select block</option>
-                <option th:each="block : ${blockList}" th:value="${block.getId()}" th:text="${block.getBlock()}"></option>
+                <option th:each="block : ${blockList}" th:value="${block.block}" th:text="${block.block}"></option>
             </select>
+         <label></label>   <input name="studentid"/>
             <input th:type="submit" th:value="Submit"/>
         </form>
 
     </div>
 
-    <div th:text="${attendanceList.size()}"></div>
+    <div ></div>
     <table>
         <tr>
             <th>Date</th>
             <th>Present</th>
         </tr>
 
-        <tr th:each="att : ${attendanceList}">
-            <td th:value="default">No records found</td>
-            <td th:value="${att.attendanceDate}" th:text="${att.attendanceDate}"></td>
-            <td th:value="${att.present}" th:text="${att.present}"></td>
+        <tr >
+            <td>No records found</td>
+            <td ></td>
+            <td ></td>
         </tr>
 
     </table>

@@ -4,62 +4,14 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-  
+
  
 </head>
 <body>
-
-<nav class="navbar is-dark">
-	<div class="container">
-	<div class="navbar-brand">
-		<a class="navbar-item" href="https://bulma.io"> 
-			<h1>ADMIN</h1>	
-		</a>
-	</div>
-<div class="navbar-brand">
-		<a class="navbar-item" href="https://bulma.io"> 
-		<h1>FACULTY</h1>
-			</a>
-	</div>
-	<div class="navbar-brand">
-		<a class="navbar-item" href="https://bulma.io"> 
-		<h1>STUDENT</h1>
-			</a>
-	</div>
-	<div class="navbar-menu">
-		<div class="navbar-end">
-			
-		</div>
-	</div>
-	</div>
-</nav>
-<br>
-<div class="admin container">
-
-<table class="table is-fullwidth is-hoverable" id="result">
-    <tr>
-    
-      <th> NAME</th>
-    
-      <th> MEDITATION DAYS</th>
-      <th> MEDITATION PERCENTAGE</th>
-      <th>EXTRA POINTS</th>
-    </tr>
- 
-  <tr th:each="attendd : ${percentdata}">
-       	<td th:text="${attendd.student.firstName} ">NAME</td>
-        <td th:text="${attendd.meditationdays}">MEDITATION DAYS</td>
-               <td th:text="${attendd.percentage}"> MEDITATION PERCENTAGE</td>
-        <td  th:text="${attendd.extrapoint}">EXTRA POINTS</td>
-      </tr>
-     
-  <tfoot>
-  
-  </tfoot>
-</table>
-</div>
-
-<script type="text/javascript" src="/js/faculty.js"  ></script>
+<form>
+<input type="button" value="Ajax call" id="mybtn" >
+</form>
+  <script type="text/javascript" src="/js/faculty.js"  ></script>
 </body>
 
 </html>

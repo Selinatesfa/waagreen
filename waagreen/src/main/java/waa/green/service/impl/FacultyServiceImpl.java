@@ -1,6 +1,7 @@
 package waa.green.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -17,86 +18,107 @@ import waa.green.repository.AttendanceRepository;
 import waa.green.repository.BlockRepository;
 import waa.green.repository.CourseRepository;
 import waa.green.service.FacultyService;
-
 @Service
 public class FacultyServiceImpl implements FacultyService {
-    @Autowired
-    AttendanceRepository attendacerepositort;
-    @Autowired
-    BlockRepository blockrepository;
-    @Autowired
-    CourseRepository courserepository;
+@Autowired
+	AttendanceRepository attendacerepositort;
+@Autowired
+BlockRepository blockrepository;
+@Autowired
+CourseRepository courserepository;
+	
+	@Override
+	public List<Attendance> generatereportbycourseandblock(Course coures, String block) {
+		
+		return attendacerepositort.generatereportbycourseandblock(coures, block);
+	//return null;
+	}
 
-    @Override
-    public List<Attendance> generatereportbycourseandblock(Course coures, String block) {
+	@Override
+	public List<Block> getAllBlock() {
+		
+		return blockrepository.findAll();
+	}
 
-        return attendacerepositort.generatereportbycourseandblock(coures, block);
-        //return null;
-    }
+	@Override
+	public List<Course> getAllCourse() {
+		return courserepository.findAll();
+	}
 
-    @Override
-    public List<Block> getAllBlock() {
+	@Override
+	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
+		double extrapoints=0;
+		double percentage=0;
+<<<<<<< HEAD
+		int canceldays=0;
+		Student studis=null;
+=======
+		int possibledays=0;
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
+		List<PercentageExtrapoint> finalreport=new ArrayList<>(); 
+		HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
+		
+		
+		for(Attendance attend: attendance) {
+			studis= attend.getStudent();
+					if(!hashresult.containsKey(attend.getStudent())) {
+				
+				List<Attendance> list=new ArrayList();
+								list.add(attend);
+				hashresult.put(attend.getStudent(), list);
+			}
+			else {
+				hashresult.get(attend.getStudent()).add(attend);
+			}
+		}
+		for(Student atendno:	hashresult.keySet()) {
+			int count= hashresult.get(atendno).size();
+						canceldays=	hashresult.get(studis).get(0).getBlock().getCanceledDays();
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
+			{
+<<<<<<< HEAD
+				int totaldays=10-canceldays;
+				percentage= (100*count/totaldays);
+=======
+				possibledays=10;
+				percentage= (100*count/10);
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
+				
+			}
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
+			{
+<<<<<<< HEAD
+				int totaldays=22-canceldays;
+				percentage= (100*count/totaldays);
+=======
+				percentage= (100*count/22);
+				possibledays=22;
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
+				
+			}
+			if(percentage>=70 && percentage <80) {
+				extrapoints=0.5;
+			}
+if(percentage>=80 && percentage <90) {
+				extrapoints=1;
+			}
+if(percentage>=90 ) {
+	extrapoints=1.5;
+	
+}		
+			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count,possibledays));
+			
+		}
+		
+		return finalreport;
+	}
 
-        return blockrepository.findAll();
-    }
+	@Override
+	public Optional<Course> findById(Long id) {
+		
+		return courserepository.findById(id);
+	}
 
-    @Override
-    public List<Course> getAllCourse() {
-        return courserepository.findAll();
-    }
-
-    @Override
-    public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
-        double extrapoints = 0;
-        double percentage = 0;
-        int possibledays = 0;
-        List<PercentageExtrapoint> finalreport = new ArrayList<>();
-        HashMap<Student, List<Attendance>> hashresult = new HashMap<>();
-
-        for (Attendance attend : attendance) {
-            if (!hashresult.containsKey(attend.getStudent())) {
-
-                List<Attendance> list = new ArrayList();
-                list.add(attend);
-                hashresult.put(attend.getStudent(), list);
-            } else {
-                hashresult.get(attend.getStudent()).add(attend);
-            }
-        }
-        for (Student atendno : hashresult.keySet()) {
-            int count = hashresult.get(atendno).size();
-
-            if ((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks")) {
-                possibledays = 10;
-                percentage = (100 * count / 10);
-
-            }
-            if ((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks")) {
-                percentage = (100 * count / 22);
-                possibledays = 22;
-
-            }
-            if (percentage >= 70 && percentage < 80) {
-                extrapoints = 0.5;
-            }
-            if (percentage >= 80 && percentage < 90) {
-                extrapoints = 1;
-            }
-            if (percentage >= 90) {
-                extrapoints = 1.5;
-
-            }
-            finalreport.add(new PercentageExtrapoint(percentage, extrapoints, atendno, count, possibledays));
-
-        }
-        return finalreport;
-    }
-
-    @Override
-    public Optional<Course> findById(Long id) {
-
-        return courserepository.findById(id);
-    }
-
+	
 
 }
