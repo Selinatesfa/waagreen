@@ -2,6 +2,7 @@ package waa.green.repository;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import waa.green.model.Attendance;
 import waa.green.model.Block;
+import waa.green.model.Course;
 
 import java.util.Date;
 
@@ -16,9 +18,14 @@ import java.util.Date;
 public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 
 
-    @Query(value = "select a from Attendance a")
-    //+ "a where :course MEMBER OF a.student.courses and a.block=:block.startDate")
-    public List<Attendance> generatereportbycourseandblock(String course, String block);
+    @Query(value = "SELECT * FROM ATTENDANCE ATTEND \n" + 
+    		"INNER JOIN BLOCK BL ON ATTEND.BLOCK_ID = BL.BLOCK_ID\n" + 
+    		"INNER JOIN STUDENT STD ON ATTEND.STUDENT_ID = STD.STUDENT_ID\n" + 
+    		"INNER JOIN COURSE_STUDENT CS ON STD.STUDENT_ID = CS.STUDENT_ID\n" + 
+    		"INNER JOIN COURSE COR ON CS.ID = COR.ID\n" + 
+    		"WHERE COR.ID = 1 AND BL.START_DATE = '2018-08-09'\n" + 
+    		"GROUP BY ATTEND.STUDENT_ID;", nativeQuery=true)
+    public List<Attendance> generatereportbycourseandblock(Course course, Date block);
 
     @Query(value = "select a from Attendance a where a.student.entry.monthYear =:dateOfEntry")
     public List<Attendance> generateReportByEntry(String dateOfEntry);

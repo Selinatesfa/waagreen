@@ -1,5 +1,9 @@
 package waa.green.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import waa.green.model.Attendance;
+import waa.green.model.Course;
 import waa.green.repository.BlockRepository;
 import waa.green.service.AttendanceService;
 import waa.green.service.FacultyService;
@@ -33,16 +38,36 @@ public class FacultyController {
 	 }
 	
 	@GetMapping("/Restfaculty")
-	 public @ResponseBody List<Attendance> facultyreport( @RequestParam String course, @RequestParam String block) {
-		
-		 return facultyservice.generatereportbycourseandblock(course, block);
+	 public @ResponseBody List<Attendance> facultyreport( @RequestParam String course, @RequestParam String block,Model model) {
+				
+		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		Date result;
+		try {			
+			result = df.parse(block);
+					} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}  
+		return null;
 	 }
 	@GetMapping("/facultyreport")
-	public String facultyreportpost(@RequestParam String course, @RequestParam String block,Model model)
-	{
-		//System.out.println(course+ block);
-		model.addAttribute("report", facultyservice.generatereportbycourseandblock(course, block));
-	System.out.println( facultyservice.generatereportbycourseandblock(course, block));
-		return "facultyreport";
+	public String facultyreportpost(@RequestParam("course") String courseId, @RequestParam String block,Model model)
+	{	
+		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		Date result;
+		try {
+			result = df.parse(block);
+			List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), result);
+				
+			System.out.println(facultyservice.findById(Long.parseLong(courseId)).get()+"courseob");
+			model.addAttribute("result", facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), result));
+			 return "faculty/facultyreport";
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}  
+						
+		
+	 return "faculty/facultyreport";
 	}
 }
