@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.apache.commons.logging.Log;
-import waa.green.model.Attendance;
 import waa.green.model.Block;
 import waa.green.model.Student;
 import waa.green.service.AttendanceService;
@@ -34,17 +33,16 @@ public class StudentController {
     private BlockService blockService;
 
     @GetMapping("/student")
-    public String viewProfile(@ModelAttribute("student")Long studentId, Model model){
-
+    public String viewProfile(@ModelAttribute("student")Student student, Model model){
+        List<Block> blockList = blockService.findAllBlocks();
+        model.addAttribute("blockList",blockList);
+       // attendanceService
         return "student/Student";
     }
 
     @GetMapping("/student/studentDetails")
-    public String showForm(@ModelAttribute("student")Long studentId, Model model){
-        List<Block> blockList = blockService.findAllBlocks();
-        model.addAttribute("blockList",blockList);
-        List<Attendance> attendList = attendanceService.attendancesByStudentId(studentId);
-        model.addAttribute("attendanceList",attendList);
+    public String showForm(){
+
         return "student/StudentDetails";
     }
 }

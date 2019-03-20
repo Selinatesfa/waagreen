@@ -66,7 +66,15 @@ CourseRepository courserepository;
 		}
 		for(Student atendno:	hashresult.keySet()) {
 			int count= hashresult.get(atendno).size();
-			if(hashresult.get(atendno).get(0).getBlock().getSessions().getN)
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType()=="two week")
+			{
+				
+			}
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType()=="four week")
+			{
+				
+			}
+			
 			finalreport.add(new PercentageExtrapoint());
 			
 		}
