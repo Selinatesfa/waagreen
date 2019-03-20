@@ -38,7 +38,7 @@
 <form th:action="@{/faculty/facultyreport}" th:method="GET" >
 <label th:text="BLOCK">BLOCK:</label>
 <select id="blockid" name="block">
-<option  th:each="bl : ${block}" th:text="${bl.startDate}" >hjjh</option> 
+<option  th:each="bl : ${block}" th:text="${bl.block}" >hjjh</option> 
 
 </select>
 <label>COURSE:</label><select id="courseid"  name="course">

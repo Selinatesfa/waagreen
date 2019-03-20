@@ -6,8 +6,7 @@ private double extrapoint;
 private Student student;
 
 public PercentageExtrapoint(double percentage, double extrapoint, Student student) {
-	super();
-	this.percentage = percentage;
+		this.percentage = percentage;
 	this.extrapoint = extrapoint;
 	this.student = student;
 }

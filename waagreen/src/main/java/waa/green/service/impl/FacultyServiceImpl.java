@@ -84,9 +84,8 @@ if(percentage>80 && percentage <90) {
 if(percentage>90 ) {
 	extrapoints=1.5;
 	
-}
-			
-			finalreport.add(new PercentageExtrapoint());
+}		
+			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno));
 			
 		}
 		return 0;

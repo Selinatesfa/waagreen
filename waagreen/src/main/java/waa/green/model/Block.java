@@ -36,8 +36,7 @@ public class Block {
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
-        
-    private String block;
+            private String block;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
