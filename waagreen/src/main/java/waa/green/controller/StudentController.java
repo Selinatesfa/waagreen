@@ -44,36 +44,29 @@ public void data(Model model) {
     @GetMapping("/student")
     public String viewProfileModel(Model model){
                  data(model);
-                 
-        return "student/StudentDetails";}
+                                  
+        return "student/StudentDetails";
+        }
 
-    public String viewProfile(@ModelAttribute("student") Student student, Model model) {
-
-        return "student/Student";
-    }
-
+   
     @GetMapping("/studentDetails")
     public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
     	String email=authentication.getName();
-    	model.addAttribute("result", studentService.generatereportbyblock(email,block)); 
+    	
+    	List<Attendance> resultlist=studentService.generatereportbyblock(studentService.findByEmail(email),block);
+    	System.out.println(resultlist);
+    	//model.addAttribute("result",resultlist ); 
     	 return "student/Student";	
     }  	
 
-//    @GetMapping("/student/detail")
-//    public String form(Model model){
+//    @GetMapping("/student/studentDetails")
+//    public String showForm(@RequestParam() Long blockId, Model model) {
 //        List<Block> blockList = blockService.findAllBlocks();
 //        model.addAttribute("blockList", blockList);
-//      return "student/StudentDetails";
+//        List<Attendance> attendanceList = attendanceService.attendancesByStudentId(blockId);
+//        model.addAttribute("attendanceList", attendanceList);
+//        return "student/StudentDetails";
 //    }
-
-    @GetMapping("/student/studentDetails")
-    public String showForm(@RequestParam() Long blockId, Model model) {
-        List<Block> blockList = blockService.findAllBlocks();
-        model.addAttribute("blockList", blockList);
-        List<Attendance> attendanceList = attendanceService.attendancesByStudentId(blockId);
-        model.addAttribute("attendanceList", attendanceList);
-        return "student/StudentDetails";
-    }
 
 
 }

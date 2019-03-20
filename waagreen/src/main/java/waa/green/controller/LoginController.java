@@ -33,7 +33,7 @@ public class LoginController {
 	        roleservice.saverole(r);
 	        Set<Role> rolelist= new HashSet<>();
 	        rolelist.add(r);
-		User user= new User("selina@gmail.com","123456","ss","sss",1,rolelist);
+		User user= new User("Lenny@mum.edu","123456","ss","sss",1,rolelist);
 		userService.saveUser(user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");

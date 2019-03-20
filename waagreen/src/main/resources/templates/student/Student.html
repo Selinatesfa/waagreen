@@ -10,22 +10,30 @@
 </head>
 <body>
 
-<p>
-    <!--/*@thymesVar id="student" type="templates"*/-->
-    <form action="#" th:action="@{/student}" th:object="${student}" method="get">
-        <fieldset>
-            <p>
-            <legend>
-                <span th:text="#{student.form.title}">Accumulative Attendance Info</span>
-            </legend>
-
-     </p>
-            <p id="buttons">
-                <input id="submit" type="submit" tabindex="5" th:value="#{student.form.viewbtn}" value="View Student">
-            </p>
-        </fieldset>
-    </form>
-
-</p>
+<div class="admin container">
+   Total sessions possible:  <p th:text="${result.possibledays}">hjghj</p>
+ Total sessions attended:<p th:text="${result.daysattended}">hgklj</p>
+ percentage<p th:text="${result.per}">khvglkhvj</p>
+ 
+<table class="table is-fullwidth is-hoverable" id="result">
+    <tr>
+    
+      <th> Date</th>
+    
+      <th>Present</th>
+    
+    </tr>
+ 
+  <tr th:each="attendd : ${result.dateofmed}">
+       	<td th:text="${attendd} ">NAME</td>
+        
+        <td  >True</td>
+      </tr>
+     
+  <tfoot>
+  
+  </tfoot>
+</table>
+</div>
 </body>
 </html>
