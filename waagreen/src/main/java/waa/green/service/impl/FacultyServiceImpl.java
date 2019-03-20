@@ -49,10 +49,14 @@ CourseRepository courserepository;
 	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
 		double extrapoints=0;
 		double percentage=0;
+		int canceldays=0;
+		Student studis=null;
 		List<PercentageExtrapoint> finalreport=new ArrayList<>(); 
 		HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
 		
+		
 		for(Attendance attend: attendance) {
+			studis= attend.getStudent();
 					if(!hashresult.containsKey(attend.getStudent())) {
 				
 				List<Attendance> list=new ArrayList();
@@ -65,16 +69,17 @@ CourseRepository courserepository;
 		}
 		for(Student atendno:	hashresult.keySet()) {
 			int count= hashresult.get(atendno).size();
-			
+						canceldays=	hashresult.get(studis).get(0).getBlock().getCanceledDays();
 			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
 			{
-				
-				percentage= (100*count/10);
+				int totaldays=10-canceldays;
+				percentage= (100*count/totaldays);
 				
 			}
 			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
 			{
-				percentage= (100*count/22);
+				int totaldays=22-canceldays;
+				percentage= (100*count/totaldays);
 				
 			}
 			if(percentage>=70 && percentage <80) {
@@ -90,6 +95,7 @@ if(percentage>=90 ) {
 			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count));
 			
 		}
+		
 		return finalreport;
 	}
 

@@ -39,5 +39,12 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 
    // @Query(value="select a from Attendance a join Student s where a.Student_id=:id")
     public List<Attendance> findAttendanceByStudentId(@Param("id") Long id);
-
+    @Query(value = "SELECT * FROM ATTENDANCE ATTEND \n" + 
+    		"INNER JOIN BLOCK BL ON ATTEND.BLOCK_ID = BL.BLOCK_ID\n" + 
+    		"INNER JOIN STUDENT STD ON ATTEND.STUDENT_ID = STD.STUDENT_ID\n" + 
+    		"INNER JOIN COURSE_STUDENT CS ON STD.STUDENT_ID = CS.STUDENT_ID\n" + 
+    		"INNER JOIN COURSE COR ON CS.ID = COR.ID\n" + 
+    		"WHERE STD.ID = ?1 AND BL.number_of_block = ?2\n" + //ask enk about code.studentid
+    		"GROUP BY ATTEND.STUDENT_ID;", nativeQuery=true)
+    public List<Attendance> generatereportbyblock(String studentid,String block);
 }

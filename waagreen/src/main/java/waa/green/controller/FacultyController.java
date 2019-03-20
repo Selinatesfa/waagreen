@@ -9,6 +9,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,26 +35,28 @@ public class FacultyController {
 		model.addAttribute("course", facultyservice.getAllCourse());
 	}
 	@GetMapping("/faculty")
-	 public String faculty(Model model) {
+	 public String faculty(Model model, Authentication authentication) {
 						model.addAttribute("block", facultyservice.getAllBlock());
 		model.addAttribute("course", facultyservice.getAllCourse());
-		
+	
+		System.out.println(authentication.getDetails());
 		 return "faculty/Faculty";
 	 }
 	
 	@GetMapping("/Restfaculty")
 	 public @ResponseBody List<Attendance> facultyreport( @RequestParam String course, @RequestParam String block,Model model) {
 				
-		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-		Date result;
-		try {			
-			result = df.parse(block);
-					} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}  
+//		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+//		Date result;
+//		try {			
+//			result = df.parse(block);
+//					} catch (ParseException e) {
+//			
+//			e.printStackTrace();
+		//}  
 		return null;
 	 }
+	
 	@GetMapping("/facultyreport")
 	public String facultyreportpost(@RequestParam("course") String courseId, @RequestParam String block,Model model)
 	{	data(model);
@@ -69,4 +72,19 @@ public class FacultyController {
 							
 	
 	}
+	@GetMapping("/facultyreportrest")
+	public String facultyreportpostrest(){	//data(model);
+			
+//			List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block);
+//		//if(facultyservice.calculateextrapoints(resultlist)getClass())
+//			for(PercentageExtrapoint pr:facultyservice.calculateextrapoints(resultlist)) {
+//					}
+//			
+//			 model.addAttribute("percentdata",facultyservice.calculateextrapoints(resultlist));
+//				//model.addAttribute("result", facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block));
+			 return "faculty/facultyreport";
+							
+	
+	}
+	
 }

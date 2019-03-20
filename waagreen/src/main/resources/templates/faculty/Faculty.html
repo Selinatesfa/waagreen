@@ -4,7 +4,6 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-  
  
 </head>
 <body>
@@ -43,7 +42,7 @@
 </select>
 <label>COURSE:</label><select id="courseid"  name="course">
 <option  th:each= "cr : ${course}" th:text="${cr.courseName}" th:value="${cr.id}">WAA </option></select>
-<input type="submit" class="button is-link" value="Report" id="mybtn" />
+<input type="submit" class="button is-link" value="Report" />
 </form>
 <div class="admin container">
 
@@ -69,7 +68,9 @@
   </tfoot>
 </table>
 </div>
-<script type="text/javascript" src="/js/faculty.js"  ></script>
+
+
+
 </body>
 
 </html>

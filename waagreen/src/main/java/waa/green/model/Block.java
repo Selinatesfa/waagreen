@@ -50,6 +50,14 @@ public class Block {
 	@JoinColumn(name = "session_id")
 	private Session session;
 
+	public Integer getCanceledDays() {
+		return canceledDays;
+	}
+
+	public void setCanceledDays(Integer canceledDays) {
+		this.canceledDays = canceledDays;
+	}
+
 	public String getBlock() {
 		return block;
 	}
