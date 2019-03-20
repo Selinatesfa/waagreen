@@ -36,7 +36,7 @@ public class Block {
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
-    private int numberOfBlock;
+    private String block;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
@@ -51,7 +51,7 @@ public class Block {
 	@Override
 	public String toString() {
 		return "Block [startDate=" + startDate + ", endDate=" + endDate + ", yearEntry=" + yearEntry
-				+ ", numberOfBlock=" + numberOfBlock + ", courses=" + courses + ", attendances=" + attendances + "]";
+				+ ", numberOfBlock=" + block + ", courses=" + courses + ", attendances=" + attendances + "]";
 	}
 
 	public long getId() {
@@ -84,14 +84,6 @@ public class Block {
 
 	public void setYearEntry(Date yearEntry) {
 		this.yearEntry = yearEntry;
-	}
-
-	public int getNumberOfBlock() {
-		return numberOfBlock;
-	}
-
-	public void setNumberOfBlock(int numberOfBlock) {
-		this.numberOfBlock = numberOfBlock;
 	}
 
 	public Set<Course> getCourses() {
