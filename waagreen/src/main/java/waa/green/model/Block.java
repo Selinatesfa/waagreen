@@ -36,7 +36,7 @@ public class Block {
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
-    private int numberOfBlock;
+    private String numberOfBlock;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
@@ -94,11 +94,11 @@ public class Block {
 		this.yearEntry = yearEntry;
 	}
 
-	public int getNumberOfBlock() {
+	public String getNumberOfBlock() {
 		return numberOfBlock;
 	}
 
-	public void setNumberOfBlock(int numberOfBlock) {
+	public void setNumberOfBlock(String numberOfBlock) {
 		this.numberOfBlock = numberOfBlock;
 	}
 
