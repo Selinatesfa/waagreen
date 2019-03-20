@@ -1,10 +1,10 @@
 package waa.green.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import waa.green.model.Attendance;
 import waa.green.model.Entry;
-import waa.green.model.EntryReportData;
 import waa.green.repository.AttendanceRepository;
 import waa.green.repository.EntryRepository;
 import waa.green.service.EntryService;

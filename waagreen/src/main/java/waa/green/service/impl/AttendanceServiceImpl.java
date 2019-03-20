@@ -1,10 +1,9 @@
 package waa.green.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import waa.green.model.Attendance;
-
-
 import waa.green.repository.AttendanceRepository;
 import waa.green.service.AttendanceService;
 
@@ -16,8 +15,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     AttendanceRepository attendanceRepository;
     @Override
     public List<Attendance> findAttendancesByEntry(long id) {
-        //return attendanceRepository.generateReportByEntry(id);
-        return null;
+        return attendanceRepository.generateReportByEntry(id);
     }
 
     @Override

@@ -24,6 +24,18 @@ public class Entry {
 	@NotBlank
 	@Column(name="month_year")
 	private String monthYear;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getMonthYear() {
+		return monthYear;
+	}
+	public void setMonthYear(String monthYear) {
+		this.monthYear = monthYear;
+	}
 
 
 }

@@ -25,7 +25,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     		"INNER JOIN COURSE COR ON CS.ID = COR.ID\n" + 
     		"WHERE COR.ID = 1 AND BL.START_DATE = '2018-08-09'\n" + 
     		"GROUP BY ATTEND.STUDENT_ID;", nativeQuery=true)
-    public List<Attendance> generatereportbycourseandblock(Course course, Date block);
+    public List<Attendance> generatereportbycourseandblock(Course course, String block);
 
     @Query(value = "select a from Attendance a where a.student.entry.monthYear =:dateOfEntry")
     public List<Attendance> generateReportByEntry(String dateOfEntry);
