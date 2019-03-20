@@ -4,47 +4,44 @@
     <meta charset="UTF-8">
     <title>Student Detail</title>
     <link href="css/main.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css"/>
 </head>
 <body>
 <div id="global">
     <h4>The student Accumulative information</h4>
-    <p>
 
-    Total sessions possible:<span th:text="#{student.form.id}">></span><br/>
+
+    Total sessions possible:<br/>
     Total sessions attended:<br/>
-    Percent attendance:     <br/>
-        Block:
-    <tr>
-        <th:block th:each="block : ${blockList}">
-            <option value="default">Select a block</option>
-            <option th:value="${block.getId()}" th:text="${block.getNumberOfBlock()}"></option>
-        </th:block>
-    </tr>
-    </p>
+    Percent attendance: <br/>
+    Block:
+    <div>
+        <form action="/student/studentDetails" method="get">
+            <select class="blue-margin">
+                <option value="default">Select block</option>
+                <option th:each="block : ${blockList}" th:value="${block.getId()}" th:text="${block.getBlock()}"></option>
+            </select>
+            <input th:type="submit" th:value="Submit"/>
+        </form>
 
+    </div>
 
+    <div th:text="${attendanceList.size()}"></div>
     <table>
         <tr>
-           <td rowspan="2">Date</td>
-            <td th:each="att : ${attendanceList}">
-                <option value="default"></option>
-                <option th:value="${att.attendanceDate}" th:text="${att.attendanceDate}"></option>
-              </td>
+            <th>Date</th>
+            <th>Present</th>
         </tr>
-        <tr>
 
-
-            <td rowspan="2">Present</td>
-            <td th:each="att : ${attendanceList}">
-                <option value="default"></option>
-                <option th:value="${att.present}" th:text="${att.present}"></option>
-            </td>
-
+        <tr th:each="att : ${attendanceList}">
+            <td th:value="default">No records found</td>
+            <td th:value="${att.attendanceDate}" th:text="${att.attendanceDate}"></td>
+            <td th:value="${att.present}" th:text="${att.present}"></td>
         </tr>
-</table>
+
+    </table>
 
 </div>
-</p>
+
 </body>
 </html>
