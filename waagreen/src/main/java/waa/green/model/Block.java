@@ -29,14 +29,16 @@ public class Block {
     @Column(name = "block_id")
     private long id;
     @Column(name = "start_date")
-    
-    private Date startDate;
+        private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
     @Column( name = "year_of_entry")
     private Date yearEntry;
     @Column( name = "number_of_block")
-    private String block;
+            private String block;
+
+	@Column( name = "canceled_days")
+	private Integer canceledDays;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
@@ -47,6 +49,14 @@ public class Block {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "session_id")
 	private Session session;
+
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
 
 	public Session getSession() {
 		return session;
@@ -93,6 +103,7 @@ public class Block {
 	public void setYearEntry(Date yearEntry) {
 		this.yearEntry = yearEntry;
 	}
+
 
 	public Set<Course> getCourses() {
 		return courses;
