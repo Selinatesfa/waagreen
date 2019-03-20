@@ -23,34 +23,17 @@ public class EntryController {
     EntryService entryService;
     @Autowired
     AttendanceService attendanceService;
-    @Autowired
-    FacultyService fs;
-
-    /*@GetMapping("/entry/report")
-    public String findReport(@RequestParam("entry") long entryId, Model model) {
-        Entry entry = entryService.findByID(entryId);
-        List<Attendance> attendances = new ArrayList<>();
-*//*        if(entry!= null)
-            attendances = attendanceService.findAttendancesByEntry(entryId);*//*
-
+      public void data(Model model) {
         model.addAttribute("entries", entryService.findAllEntry());
-        model.addAttribute("attendances", attendances);
-        model.addAttribute("entryId", entryId);
+    }
 
-        return "Admin/generateReportByEntry";
-    }*/
     @RequestMapping("/entryreport")
     public String  report(@RequestParam("entry") String monthYear, Model model) {
-        /*for(Attendance a:entryService.generateReportByEntry(entry) ){
-            System.out.println(a);
-        }*/
+data(model);
         Entry entry = entryService.findEntryByMonthYear(monthYear);
         List<Attendance> entryReportData= entryService.generateReportByEntry(entry.getId());
-      //  List<EntryReportData> entryReportData1 = new ArrayList();
-        System.out.println("entryReportData: " + entryReportData.size());
-        model.addAttribute("entries", entryService.findAllEntry());
-        //model.addAttribute("report",entryService.generateReportByEntry(entry.getId()));
-                //System.out.print(entryService.generateReportByEntry(entry));
+
+        model.addAttribute("percentdata",entryService.calculateextrapoints(entryReportData));
         return "Admin/generateReportByEntry";
     }
 }

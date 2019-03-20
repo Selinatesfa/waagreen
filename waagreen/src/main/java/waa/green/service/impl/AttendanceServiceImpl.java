@@ -17,4 +17,10 @@ public class AttendanceServiceImpl implements AttendanceService {
     public List<Attendance> findAttendancesByEntry(long id) {
         return attendanceRepository.generateReportByEntry(id);
     }
+
+    @Override
+    public List<Attendance> attendancesByStudentId(Long id) {
+        return attendanceRepository.findAttendanceByStudentId(id,2L);
+
+    }
 }

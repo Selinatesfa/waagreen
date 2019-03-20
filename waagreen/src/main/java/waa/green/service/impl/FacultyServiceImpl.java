@@ -49,8 +49,12 @@ CourseRepository courserepository;
 	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
 		double extrapoints=0;
 		double percentage=0;
+<<<<<<< HEAD
 		int canceldays=0;
 		Student studis=null;
+=======
+		int possibledays=0;
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 		List<PercentageExtrapoint> finalreport=new ArrayList<>(); 
 		HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
 		
@@ -72,14 +76,24 @@ CourseRepository courserepository;
 						canceldays=	hashresult.get(studis).get(0).getBlock().getCanceledDays();
 			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
 			{
+<<<<<<< HEAD
 				int totaldays=10-canceldays;
 				percentage= (100*count/totaldays);
+=======
+				possibledays=10;
+				percentage= (100*count/10);
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 				
 			}
 			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
 			{
+<<<<<<< HEAD
 				int totaldays=22-canceldays;
 				percentage= (100*count/totaldays);
+=======
+				percentage= (100*count/22);
+				possibledays=22;
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 				
 			}
 			if(percentage>=70 && percentage <80) {
@@ -92,7 +106,7 @@ if(percentage>=90 ) {
 	extrapoints=1.5;
 	
 }		
-			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count));
+			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count,possibledays));
 			
 		}
 		

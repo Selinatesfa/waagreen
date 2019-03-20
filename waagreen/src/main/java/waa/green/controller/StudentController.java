@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.apache.commons.logging.Log;
+import org.springframework.web.bind.annotation.RequestParam;
+import waa.green.model.Attendance;
 import waa.green.model.Block;
 import waa.green.model.Student;
 import waa.green.service.AttendanceService;
@@ -40,17 +42,41 @@ public void data(Model model) {
 
    
     @GetMapping("/student")
+<<<<<<< HEAD
     public String viewProfileModel(Model model){
                  data(model);
                  
         return "student/StudentDetails";
+=======
+    public String viewProfile(@ModelAttribute("student") Student student, Model model) {
+
+        return "student/Student";
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
     }
 
+<<<<<<< HEAD
     @GetMapping("/studentDetails")
     public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
     	String email=authentication.getName();
     	model.addAttribute("result", studentService.generatereportbyblock(email,block));
     	
+=======
+    @GetMapping("/student/detail")
+    public String form(Model model){
+        List<Block> blockList = blockService.findAllBlocks();
+        model.addAttribute("blockList", blockList);
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
         return "student/StudentDetails";
     }
+
+    @GetMapping("/student/studentDetails")
+    public String showForm(@RequestParam() Long blockId, Model model) {
+        List<Block> blockList = blockService.findAllBlocks();
+        model.addAttribute("blockList", blockList);
+        List<Attendance> attendanceList = attendanceService.attendancesByStudentId(blockId);
+        model.addAttribute("attendanceList", attendanceList);
+        return "student/StudentDetails";
+    }
+
+
 }
