@@ -100,6 +100,14 @@ public class Block {
 		return yearEntry;
 	}
 
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
+
 	public void setYearEntry(Date yearEntry) {
 		this.yearEntry = yearEntry;
 	}
