@@ -12,7 +12,12 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student,Long> {
-
     @Query("SELECT stu FROM Student stu WHERE stu.id =:id")
     Attendance attendanceInfoAccumulative(@Param("id") Long id);
+
+    Student getAllByCode_StudentId(String code);
+    Student getByCodeBarcode(String code);
+
+    @Query(value = "select std from Student std where std.firstName = :firstName and std.lastName = :lastName")
+    Student getStudentByFirstNameAndLastName(String firstName, String lastName);
 }

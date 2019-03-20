@@ -1,8 +1,8 @@
 package waa.green.service;
 
-import org.springframework.stereotype.Service;
+import waa.green.model.Student;
 
-@Service
 public interface StudentService {
-
+    Student getStudentByCode(String code);
+    Student getStudentByFirstNameAndLastName(String firstName, String lastName);
 }
