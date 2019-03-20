@@ -11,4 +11,5 @@ import java.util.List;
 public interface EntryRepository extends CrudRepository<Entry,Long> {
        public List<Entry> findAll();
        Entry findEntryByMonthYear(String monthYear);
+
 }
