@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import waa.green.model.Attendance;
 import waa.green.model.Block;
@@ -21,5 +22,8 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 
     @Query(value = "select a from Attendance a where a.student.entry.monthYear =:dateOfEntry")
     public List<Attendance> generateReportByEntry(String dateOfEntry);
+
+    @Query(value="select a from Attendance a join Student s where a.Student_id=:id")
+    public List<Attendance> findAttendanceByStudentId(@Param("id") Long id);
 
 }
