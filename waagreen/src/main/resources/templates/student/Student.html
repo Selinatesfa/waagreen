@@ -4,28 +4,37 @@
     <meta charset="ISO-8859-1">
     <title>Computer ProfessionalS Program </title>
     <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
     <script type="text/javascript"
             th:href="@{/js/student.js}"></script>
 </head>
 <body>
+<div class="admin container">
+ Total sessions possible:   <div th:text="${result.possibledays}">   Total sessions possible:</div>
+ Total sessions attended:<div th:text="${result.daysattended}"> Total sessions attended:</div>
+ percentage<div th:text="${result.per}"> percentage</div>
+ 
+<table class="table is-fullwidth is-hoverable" id="result">
+    <tr>
+    
+      <th> Date</th>
+    
+      <th>Present</th>
+    
+    </tr>
+ 
+  <tr th:each="attendd : ${result.dateofmed}">
+       	<td th:text="${attendd} ">NAME</td>
+        
+        <td  >True</td>
+      </tr>
+     
+  <tfoot>
+  
+  </tfoot>
+</table>
+</div>
 
-<p>
-    <!--/*@thymesVar id="student" type="templates"*/-->
-    <form action="#" th:action="@{/student}" th:object="${student}" method="get">
-        <fieldset>
-            <p>
-            <legend>
-                <span th:text="#{student.form.title}">Accumulative Attendance Info</span>
-            </legend>
-
-     </p>
-            <p id="buttons">
-                <input id="submit" type="submit" tabindex="5" th:value="#{student.form.viewbtn}" value="View Student">
-            </p>
-        </fieldset>
-    </form>
-
-</p>
 </body>
 </html>

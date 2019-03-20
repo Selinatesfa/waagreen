@@ -11,36 +11,21 @@
     <h4>The student Accumulative information</h4>
 
 
-    Total sessions possible:<br/>
-    Total sessions attended:<br/>
-    Percent attendance: <br/>
-    Block:
+   
     <div>
         <form th:action="@{/student/studentDetails}" method="get">
             <select class="blue-margin" name="block">
                 <option value="default">Select block</option>
                 <option th:each="block : ${blockList}" th:value="${block.block}" th:text="${block.block}"></option>
             </select>
-         <label></label>   <input name="studentid"/>
-            <input th:type="submit" th:value="Submit"/>
+                    <input th:type="submit" th:value="Submit"/>
         </form>
 
     </div>
 
     <div ></div>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Present</th>
-        </tr>
+    
 
-        <tr >
-            <td>No records found</td>
-            <td ></td>
-            <td ></td>
-        </tr>
-
-    </table>
 
 </div>
 

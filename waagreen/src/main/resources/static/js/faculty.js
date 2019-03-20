@@ -1,7 +1,16 @@
-window.onload= function(){
+/*window.onload= function(){
+	alert("load");
+	
 		document.getElementById('#mybtn').onclick= clickStart;
-	alert("load")
-};
+	
+};*/
+
+
+$( document ).ready(function(){
+	$("#mybtn").click(function(){
+		alert('clicked');
+	});
+});
 //$("#mybtn").onclick= function(){
 //	alert("btn");
 //}

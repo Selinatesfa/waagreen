@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import waa.green.model.Attendance;
 import waa.green.model.Block;
 import waa.green.model.Course;
+import waa.green.model.Student;
 
 import java.util.Date;
 
@@ -44,8 +45,8 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     		"INNER JOIN STUDENT STD ON ATTEND.STUDENT_ID = STD.STUDENT_ID \n" + 
     		"INNER JOIN COURSE_STUDENT CS ON STD.STUDENT_ID = CS.STUDENT_ID \n" + 
     		"INNER JOIN COURSE COR ON CS.ID = COR.ID\n" + 
-    		"WHERE STD.STUDENT_ID = ?1 AND BL.NUMBER_OF_BLOCK = ?2;", nativeQuery=true)
-    public List<Attendance> generatereportbyblock(String studentid,String block);
+    		"WHERE STD.STUDENT_ID = ?1 AND BL.NUMBER_OF_BLOCK = ?2", nativeQuery=true)
+    public List<Attendance> generatereportbyblock(Long studentid,String block);
 
     @Query(value="SELECT * FROM ATTENDANCE AT \n" +
             "INNER JOIN STUDENT ST ON AT.STUDENT_ID = ST.STUDENT_ID\n" +

@@ -20,4 +20,6 @@ public interface StudentRepository extends CrudRepository<Student,Long> {
 
     @Query(value = "select std from Student std where std.firstName = :firstName and std.lastName = :lastName")
     Student getStudentByFirstNameAndLastName(String firstName, String lastName);
+    
+    public Student findByEmail(String email);
 }

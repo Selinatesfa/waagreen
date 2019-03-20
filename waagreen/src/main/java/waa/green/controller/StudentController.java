@@ -19,6 +19,7 @@ import waa.green.service.AttendanceService;
 import waa.green.service.BlockService;
 import waa.green.service.StudentService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,53 +28,32 @@ import java.util.List;
 public class StudentController {
 	 @Autowired
 	    private StudentService studentService;
-
 	    @Autowired
 	    private AttendanceService attendanceService;
-
 	    @Autowired
 	    private BlockService blockService;
 
 public void data(Model model) {
 	model.addAttribute("blockList",blockService.findAllBlocks());
-	 
-}
+	 }
     private static final Log logger = LogFactory.getLog(StudentController.class);
-
-   
+  
     @GetMapping("/student")
     public String viewProfileModel(Model model){
                  data(model);
-                 
-        return "student/StudentDetails";}
-
-    public String viewProfile(@ModelAttribute("student") Student student, Model model) {
-
-        return "student/Student";
-    }
-
+                                
+        return "student/StudentDetails";
+        }
+  
     @GetMapping("/studentDetails")
     public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
     	String email=authentication.getName();
-    	model.addAttribute("result", studentService.generatereportbyblock(email,block)); 
+    	Student stud=studentService.findByEmail(email);
+    	  	
+    	List<Attendance> resultlist=studentService.generatereportbyblock(stud.getId(),block);
+        	model.addAttribute("result",studentService.calculateextrapoints(resultlist) ); 
     	 return "student/Student";	
     }  	
-
-//    @GetMapping("/student/detail")
-//    public String form(Model model){
-//        List<Block> blockList = blockService.findAllBlocks();
-//        model.addAttribute("blockList", blockList);
-//      return "student/StudentDetails";
-//    }
-
-    @GetMapping("/student/studentDetails")
-    public String showForm(@RequestParam() Long blockId, Model model) {
-        List<Block> blockList = blockService.findAllBlocks();
-        model.addAttribute("blockList", blockList);
-        List<Attendance> attendanceList = attendanceService.attendancesByStudentId(blockId);
-        model.addAttribute("attendanceList", attendanceList);
-        return "student/StudentDetails";
-    }
 
 
 }
