@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import waa.green.model.Attendance;
+import waa.green.model.Role;
 import waa.green.model.User;
 import waa.green.service.*;
 
@@ -27,6 +28,8 @@ public class AdminController {
     UserService userService;
     @Autowired
     EntryService entryservice;
+    @Autowired
+    RoleService roleService;
 
     @RequestMapping("/admin")
     public String admin(Model model) {
@@ -34,37 +37,28 @@ public class AdminController {
         return "Admin/generateReportByEntry";
     }
 
-    /*@RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public @ResponseBody
-    List<Attendance> showReport(@RequestParam("entry") String entry) {
-        return entryservice.generateReportByEntry(entry);
-    }*/
-
-    @GetMapping("/registration")
-    public ModelAndView registration() {
-        ModelAndView modelAndView = new ModelAndView();
-//	        modelAndView.addObject("user", user);
-//	        modelAndView.setViewName("registration");
-        return modelAndView;
-    }
-
-    @PostMapping(value = "/registration")
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByEmail(user.getEmail());
-        if (userExists != null) {
-            bindingResult
-                    .rejectValue("email", "error.user",
-                            "There is already a user registered with the email provided");
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("registration");
-        } else {
-            userService.saveUser(user);
-            // modelAndView.addObject("successMessage", "User has been registered successfully");
-            //modelAndView.addObject("user", new User());
-            modelAndView.setViewName("/login");
-        }
-        return modelAndView;
-    }
+//      @GetMapping("/registration")
+//    public String getAddUserForm(@ModelAttribute("user") User user, Model model) {
+//		//List<Role> roles = roleService.findrole();
+//		//model.addAttribute("roles", roles);
+//		return "Admin/registration";
+//	}
+//
+//    @PostMapping(value = "/registration")
+//    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        User userExists = userService.findUserByEmail(user.getEmail());
+//        if (userExists != null) {
+//            bindingResult
+//                    .rejectValue("email", "error.user",
+//                            "There is already a user registered with the email provided");
+//        }
+//        if (bindingResult.hasErrors()) {
+//            modelAndView.setViewName("registration");
+//        } else {
+//            userService.saveUser(user);
+//                       modelAndView.setViewName("/login");
+//        }
+//        return modelAndView;
+//    }
 }

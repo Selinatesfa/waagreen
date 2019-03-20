@@ -44,5 +44,10 @@ public class LoginController {
  public String home() {
 	 return "home";
  }
+ @GetMapping("/access-denied")
+ public String accessdenied() {
+	 return "access-denied";
+ }
+ 
 	
 	    }
