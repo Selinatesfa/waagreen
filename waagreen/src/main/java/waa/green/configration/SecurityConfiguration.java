@@ -45,28 +45,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.
-        authorizeRequests()
-        .antMatchers("/").permitAll()
-        .antMatchers("/h2-console").permitAll()
-        .antMatchers("/login").permitAll()
-        .antMatchers("/registration").permitAll()
-        .antMatchers("/**").hasAuthority("ADMIN").anyRequest()
-        .authenticated().and().csrf().disable().formLogin()
-        .loginPage("/login").failureUrl("/login?error=true")
-        .defaultSuccessUrl("/home")
-        .usernameParameter("email")
-        .passwordParameter("password")
-        .and().logout()
-        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .logoutSuccessUrl("/").and().exceptionHandling()
-        .accessDeniedPage("/access-denied");
+                authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/h2-console").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/entry/**").permitAll()
+                .antMatchers("/**").hasAuthority("ADMIN").anyRequest()
+                .authenticated().and().csrf().disable().formLogin()
+                .loginPage("/login").failureUrl("/login?error=true")
+                .defaultSuccessUrl("/home")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").and().exceptionHandling()
+                .accessDeniedPage("/access-denied");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/h2-console/**");
     }
 
 }

@@ -114,5 +114,5 @@ public class Attendance {
 		this.block = block;
 	}
 
-	
+
 }
