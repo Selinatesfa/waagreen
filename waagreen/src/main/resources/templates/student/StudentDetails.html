@@ -18,8 +18,7 @@
                 <option value="default">Select block</option>
                 <option th:each="block : ${blockList}" th:value="${block.block}" th:text="${block.block}"></option>
             </select>
-         <label></label>   <input name="studentid"/>
-            <input th:type="submit" th:value="Submit"/>
+                    <input th:type="submit" th:value="Submit"/>
         </form>
 
     </div>

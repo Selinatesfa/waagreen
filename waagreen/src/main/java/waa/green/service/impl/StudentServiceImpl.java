@@ -21,9 +21,9 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	AttendanceRepository attendacerepositort;
 	@Autowired
-	StudentService studentservice;
+	StudentRepository studentservice;
 	@Override
-	public List<Attendance> generatereportbyblock(Student studentid,String block) {
+	public List<Attendance> generatereportbyblock(Long studentid,String block) {
 
 		return attendacerepositort.generatereportbyblock(studentid,block);
 	}
@@ -58,22 +58,25 @@ public class StudentServiceImpl implements StudentService {
 		for(Attendance atendno:	attendance) {
 			 count= attendance.size();
 						canceldays=	atendno.getBlock().getCanceledDays();
-						blocktype= atendno.getBlock().getBlock();
+						blocktype= atendno.getBlock().getSession().getType();
+												alldates.add(atendno.getAttendanceDate());
 						
-						alldates.add(atendno.getAttendanceDate());
 		}
-		
+		System.out.println(count+"++++++"+blocktype);
 			if(blocktype.equals("2 weeks"))
 			{
 				int totaldays=10-canceldays;
 				percentage= (100*count/totaldays);
 				possibledays=10;
+				System.out.println(count+"++++++"+percentage+"2week" );
 										}
 			if(blocktype.equals("4 weeks"))
 			{
 				int totaldays=22-canceldays;
 				percentage= (100*count/totaldays);
 								possibledays=22;
+								System.out.println(count+"++++++"+percentage+"4week" );
+								
 				}
 			StudentReportDate result=	new StudentReportDate(percentage,possibledays,count);
 			result.setDateofmed(alldates);
