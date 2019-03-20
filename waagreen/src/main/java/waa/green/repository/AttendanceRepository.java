@@ -37,7 +37,6 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 			"WHERE STD.ENTRY = ?1", nativeQuery = true)
     public List<Attendance> generateReportByEntry(Long entryId);
 
-<<<<<<< HEAD
    // @Query(value="select a from Attendance a join Student s where a.Student_id=:id")
     public List<Attendance> findAttendanceByStudentId(@Param("id") Long id);
     @Query(value = "SELECT * FROM ATTENDANCE ATTEND \n" + 
@@ -48,12 +47,11 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     		"WHERE STD.ID = ?1 AND BL.number_of_block = ?2\n" + //ask enk about code.studentid
     		"GROUP BY ATTEND.STUDENT_ID;", nativeQuery=true)
     public List<Attendance> generatereportbyblock(String studentid,String block);
-=======
+
     @Query(value="SELECT * FROM ATTENDANCE AT \n" +
             "INNER JOIN STUDENT ST ON AT.STUDENT_ID = ST.STUDENT_ID\n" +
             "INNER JOIN BLOCK BL ON AT.BLOCK_ID = BL.BLOCK_ID\n" +
             "WHERE BL.BLOCK_ID = :id AND ST.STUDENT_ID = :studentId", nativeQuery = true)
     public List<Attendance> findAttendanceByStudentId(@Param("id") Long id, long studentId);
 
->>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 }
