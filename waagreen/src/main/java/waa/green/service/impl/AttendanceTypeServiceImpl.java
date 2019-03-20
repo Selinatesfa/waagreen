@@ -17,4 +17,9 @@ public class AttendanceTypeServiceImpl implements AttendanceTypeService {
     public List<AttendanceType> getAll() {
         return (List<AttendanceType>) attendanceTypeRepository.findAll();
     }
+
+    @Override
+    public AttendanceType findById(long id) {
+        return attendanceTypeRepository.findById(id).get();
+    }
 }

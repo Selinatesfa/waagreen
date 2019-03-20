@@ -29,16 +29,16 @@ public class Block {
     @Column(name = "block_id")
     private long id;
     @Column(name = "start_date")
-        private Date startDate;
+    private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
     @Column( name = "year_of_entry")
     private Date yearEntry;
-    @Column( name = "number_of_block")
-            private String block;
+    @Column(name = "number_of_block")
+    private String block;
 
-	@Column( name = "canceled_days")
-	private Integer canceledDays;
+    @Column(name = "canceled_days")
+    private Integer canceledDays;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();

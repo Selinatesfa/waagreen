@@ -2,12 +2,8 @@ package waa.green.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +20,7 @@ public class Student {
     private String firstName;
     @Column( name = "last_name")
     private String lastName;
+    private String email;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entry")
     private Entry entry;
