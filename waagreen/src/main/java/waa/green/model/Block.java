@@ -37,6 +37,9 @@ public class Block {
     @Column( name = "number_of_block")
             private String block;
 
+	@Column( name = "canceled_days")
+	private Integer canceledDays;
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
 
