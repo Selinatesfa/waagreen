@@ -43,7 +43,6 @@ public class EntryServiceImpl implements EntryService {
         int possibledays=0;
         List<PercentageExtrapoint> finalreport=new ArrayList<>();
         HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
-
         for(Attendance attend: attendance) {
             if(!hashresult.containsKey(attend.getStudent())) {
 
@@ -60,14 +59,14 @@ public class EntryServiceImpl implements EntryService {
 
             if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
             {
-                possibledays+=10;
-                percentage= (100*count/possibledays);
+                possibledays=10;
+                percentage= (100*count/10);
 
             }
             if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
             {
-                possibledays+=22;
-                percentage= (100*count/possibledays);
+                possibledays=22;
+                percentage= (100*count/22);
                             }
             if(percentage>=70 && percentage <80) {
                 extrapoints=0.5;

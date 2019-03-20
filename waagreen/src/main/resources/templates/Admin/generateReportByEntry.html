@@ -39,35 +39,40 @@
 </nav>
 <br>
 <div class="admin container">
-    <form >
+    <form th:action="@{/admin/entryreport}" th:method="GET">
         <label th:text="ENTRY">ENTRY:</label>
-        <select  >
-            <option th:each="b:${entry}" th:text="${b}"></option>
+        <select name="entry" `>
+            <option th:each="entry:${entries}"
+                    th:value="${entry.monthYear}" th:text="${entry.monthYear}"
+                    th:selected="${monthYear==entry.monthYear}"></option>
         </select>
-        <input type="button" class="button is-link" value="Report" id="submitBtn">
+        <input type="submit" class="button is-link" value="Report" id="submitBtn">
     </form>
     <table class="table is-fullwidth is-hoverable" id="result">
         <thead>
         <tr>
-            <th> ID </th>
-            <th> NAME</th>
-            <th> EMAIL ADDRESS</th>
-            <th> MEDITATION DAYS</th>
-            <th> MEDITATION PERCENTAGE</th>
-            <th>EXTRA POINTS</th>
+            <th> Id</th>
+            <th> Email</th>
+            <th> Total Sessions Possible</th>
+            <th>Total Sessions Attended</th>
+            <th>Percent Attendance</th>
         </tr>
         </thead>
+        <tr th:each="attendd : ${percentdata}">
+            <td th:text="${attendd.student.code.studentId} ">Id</td>
+            <td th:text="${attendd.student.email">Email</td>
+            <td th:text="${attendd.possibledays}">Total Session Possible </td>
+            <td th:text="${attendd.meditationdays}">Total Sesion Attended </td>
+            <td th:text="${attendd.percentage}">Percent Attended</td>
+        </tr>
         <tbody>
-
-        </tbody>
         <tfoot>
         <tr>
-            <th> ID </th>
-            <th> NAME</th>
-            <th> EMAIL ADDRESS</th>
-            <th> MEDITATION DAYS</th>
-            <th> MEDITATION PERCENTAGE</th>
-            <th>EXTRA POINTS</th>
+            <th> Id</th>
+            <th> Email</th>
+            <th> Total sessions possible</th>
+            <th>Total sessions attended</th>
+            <th>Percent attendance</th>
         </tr>
         </tfoot>
     </table>

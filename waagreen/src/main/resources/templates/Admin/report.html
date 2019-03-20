@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+<body>
+<table class="table is-fullwidth is-hoverable" id="result">
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> NAME</th>
+        <th> EMAIL ADDRESS</th>
+        <th> MEDITATION DAYS</th>
+        <th> MEDITATION PERCENTAGE</th>
+        <th>EXTRA POINTS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="attend : ${report}">
+        <td th:text="${attend.student.firstName}">1</td>
+        <td th:text="${attend.student.lastName}">001</td>
+        <td th:text="${attend.attendanceDate}">Name</td>
+        <td th:text="${attend.attendanceType.types}">City</td>
+        <td th:text="">Country</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th> ID </th>
+        <th> NAME</th>
+        <th> EMAIL ADDRESS</th>
+        <th> MEDITATION DAYS</th>
+        <th> MEDITATION PERCENTAGE</th>
+        <th>EXTRA POINTS</th>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
