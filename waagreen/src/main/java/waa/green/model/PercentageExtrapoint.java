@@ -4,11 +4,19 @@ public class PercentageExtrapoint {
 private double percentage;
 private double extrapoint;
 private Student student;
+private int meditationdays;
 
-public PercentageExtrapoint(double percentage, double extrapoint, Student student) {
+public int getMeditationdays() {
+	return meditationdays;
+}
+public void setMeditationdays(int meditationdays) {
+	this.meditationdays = meditationdays;
+}
+public PercentageExtrapoint(double percentage, double extrapoint, Student student,int meditationdays) {
 		this.percentage = percentage;
 	this.extrapoint = extrapoint;
 	this.student = student;
+	this.meditationdays=meditationdays;
 }
 public PercentageExtrapoint() {
 }

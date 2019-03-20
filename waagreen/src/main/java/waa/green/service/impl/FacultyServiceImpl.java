@@ -28,7 +28,7 @@ BlockRepository blockrepository;
 CourseRepository courserepository;
 	
 	@Override
-	public List<Attendance> generatereportbycourseandblock(Course coures, Date block) {
+	public List<Attendance> generatereportbycourseandblock(Course coures, String block) {
 		
 		return attendacerepositort.generatereportbycourseandblock(coures, block);
 	//return null;
@@ -46,15 +46,14 @@ CourseRepository courserepository;
 	}
 
 	@Override
-	public double calculateextrapoints(List<Attendance> attendance) {
+	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
 		double extrapoints=0;
 		double percentage=0;
 		List<PercentageExtrapoint> finalreport=new ArrayList<>(); 
 		HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
 		
 		for(Attendance attend: attendance) {
-			
-			if(!hashresult.containsKey(attend.getStudent())) {
+					if(!hashresult.containsKey(attend.getStudent())) {
 				
 				List<Attendance> list=new ArrayList();
 								list.add(attend);
@@ -66,29 +65,32 @@ CourseRepository courserepository;
 		}
 		for(Student atendno:	hashresult.keySet()) {
 			int count= hashresult.get(atendno).size();
-			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType()=="2 week")
+			
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
 			{
-				percentage= (count/10)*100;
+				
+				percentage= (100*count/10);
 				
 			}
-			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType()=="4 week")
+			if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
 			{
-				percentage= (count/22)*100;
+				percentage= (100*count/22);
+				
 			}
-			if(percentage>70 && percentage <80) {
+			if(percentage>=70 && percentage <80) {
 				extrapoints=0.5;
 			}
-if(percentage>80 && percentage <90) {
+if(percentage>=80 && percentage <90) {
 				extrapoints=1;
 			}
-if(percentage>90 ) {
+if(percentage>=90 ) {
 	extrapoints=1.5;
 	
 }		
-			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno));
+			finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count));
 			
 		}
-		return 0;
+		return finalreport;
 	}
 
 	@Override

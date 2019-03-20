@@ -46,26 +46,19 @@
       <th>EXTRA POINTS</th>
     </tr>
  
- <tr th:each="attend : ${result}">
- 
-      	<td th:text="${attend.student.firstName} +' '+${attend.student.lastName}">name</td>
-        <td th:text="${attend.attendanceDate}">date</td>
-       
-        <td th:text="${attend.present}">persent</td>
-        <td  th:text="${attend.present}">extra point</td>
+  <tr th:each="attendd : ${percentdata}">
+       	<td th:text="${attendd.student.firstName} ">NAME</td>
+        <td th:text="${attendd.meditationdays}">MEDITATION DAYS</td>
+               <td th:text="${attendd.percentage}"> MEDITATION PERCENTAGE</td>
+        <td  th:text="${attendd.extrapoint}">EXTRA POINTS</td>
       </tr>
      
   <tfoot>
-    <tr>
-    
-      <th> NAME</th>
-     
-      <th> MEDITATION DAYS</th>
-      <th> MEDITATION PERCENTAGE</th>
-      <th>EXTRA POINTS</th>
-    </tr>
+  
   </tfoot>
 </table>
+</div>
+
 <script type="text/javascript" src="/js/faculty.js"  ></script>
 </body>
 

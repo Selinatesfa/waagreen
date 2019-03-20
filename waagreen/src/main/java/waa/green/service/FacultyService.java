@@ -7,13 +7,14 @@ import java.util.Optional;
 import waa.green.model.Attendance;
 import waa.green.model.Block;
 import waa.green.model.Course;
+import waa.green.model.PercentageExtrapoint;
 
 public interface FacultyService {
 
-public List<Attendance> generatereportbycourseandblock(Course coures,Date block);
+public List<Attendance> generatereportbycourseandblock(Course coures,String block);
 public List<Block> getAllBlock();
 public List<Course> getAllCourse();
-public double calculateextrapoints(List<Attendance> attendance);
+public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance);
 public Optional<Course> findById(Long id);
 
 }

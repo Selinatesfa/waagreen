@@ -45,29 +45,27 @@
 <option  th:each= "cr : ${course}" th:text="${cr.courseName}" th:value="${cr.id}">WAA </option></select>
 <input type="submit" class="button is-link" value="Report" id="mybtn" />
 </form>
+<div class="admin container">
+
 <table class="table is-fullwidth is-hoverable" id="result">
-  <thead>
     <tr>
-      <th> ID </th>
+    
       <th> NAME</th>
-      <th> EMAIL ADDRESS</th>
+    
       <th> MEDITATION DAYS</th>
       <th> MEDITATION PERCENTAGE</th>
       <th>EXTRA POINTS</th>
     </tr>
-  </thead>
-  <tbody>
-   
-  </tbody>
+ 
+  <tr th:each="attendd : ${percentdata}">
+       	<td th:text="${attendd.student.firstName} ">NAME</td>
+        <td th:text="${attendd.meditationdays}">MEDITATION DAYS</td>
+               <td th:text="${attendd.percentage}"> MEDITATION PERCENTAGE</td>
+        <td  th:text="${attendd.extrapoint}">EXTRA POINTS</td>
+      </tr>
+     
   <tfoot>
-    <tr>
-      <th> ID </th>
-      <th> NAME</th>
-      <th> EMAIL ADDRESS</th>
-      <th> MEDITATION DAYS</th>
-      <th> MEDITATION PERCENTAGE</th>
-      <th>EXTRA POINTS</th>
-    </tr>
+  
   </tfoot>
 </table>
 </div>
