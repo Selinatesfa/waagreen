@@ -42,31 +42,27 @@ public void data(Model model) {
 
    
     @GetMapping("/student")
-<<<<<<< HEAD
     public String viewProfileModel(Model model){
                  data(model);
                  
-        return "student/StudentDetails";
-=======
+        return "student/StudentDetails";}
+
     public String viewProfile(@ModelAttribute("student") Student student, Model model) {
 
         return "student/Student";
->>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
     }
 
-<<<<<<< HEAD
-    @GetMapping("/studentDetails")
-    public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
-    	String email=authentication.getName();
-    	model.addAttribute("result", studentService.generatereportbyblock(email,block));
-    	
-=======
+//    @GetMapping("/studentDetails")
+//    public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
+//    	String email=authentication.getName();
+//    	model.addAttribute("result", studentService.generatereportbyblock(email,block)); 
+//    	}  	
+
     @GetMapping("/student/detail")
     public String form(Model model){
         List<Block> blockList = blockService.findAllBlocks();
         model.addAttribute("blockList", blockList);
->>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
-        return "student/StudentDetails";
+      return "student/StudentDetails";
     }
 
     @GetMapping("/student/studentDetails")
