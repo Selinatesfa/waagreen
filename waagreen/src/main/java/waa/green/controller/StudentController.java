@@ -52,18 +52,19 @@ public void data(Model model) {
         return "student/Student";
     }
 
-//    @GetMapping("/studentDetails")
-//    public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
-//    	String email=authentication.getName();
-//    	model.addAttribute("result", studentService.generatereportbyblock(email,block)); 
-//    	}  	
+    @GetMapping("/studentDetails")
+    public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
+    	String email=authentication.getName();
+    	model.addAttribute("result", studentService.generatereportbyblock(email,block)); 
+    	 return "student/Student";	
+    }  	
 
-    @GetMapping("/student/detail")
-    public String form(Model model){
-        List<Block> blockList = blockService.findAllBlocks();
-        model.addAttribute("blockList", blockList);
-      return "student/StudentDetails";
-    }
+//    @GetMapping("/student/detail")
+//    public String form(Model model){
+//        List<Block> blockList = blockService.findAllBlocks();
+//        model.addAttribute("blockList", blockList);
+//      return "student/StudentDetails";
+//    }
 
     @GetMapping("/student/studentDetails")
     public String showForm(@RequestParam() Long blockId, Model model) {
