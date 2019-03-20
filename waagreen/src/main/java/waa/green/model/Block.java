@@ -50,14 +50,6 @@ public class Block {
 	@JoinColumn(name = "session_id")
 	private Session session;
 
-	public String getBlock() {
-		return block;
-	}
-
-	public void setBlock(String block) {
-		this.block = block;
-	}
-
 	public Session getSession() {
 		return session;
 	}
