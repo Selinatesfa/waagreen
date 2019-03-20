@@ -1,5 +1,5 @@
 window.onload= function(){
-		//document.getElementById('#mybtn').onclick= clickStart;
+		document.getElementById('#mybtn').onclick= clickStart;
 	alert("load")
 };
 //$("#mybtn").onclick= function(){
@@ -8,7 +8,8 @@ window.onload= function(){
 
 //
 
-//function clickStart(){
+function clickStart(){
+	alert("start")
 //	//$('#result').hide();
 //	//alert(bl + cr);
 ////							
@@ -29,7 +30,7 @@ window.onload= function(){
 //					alert("error")
 //				}
 //			}
-//	};
+	}
 //var bl=document.getElementById('blockid').value;
 //var cr=	document.getElementById('courseid').value;
 	

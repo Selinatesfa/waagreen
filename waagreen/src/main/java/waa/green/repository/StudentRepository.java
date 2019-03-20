@@ -14,7 +14,7 @@ import java.util.List;
 public interface StudentRepository extends CrudRepository<Student,Long> {
     @Query("SELECT stu FROM Student stu WHERE stu.id =:id")
     Attendance attendanceInfoAccumulative(@Param("id") Long id);
-
+   
     Student getAllByCode_StudentId(String code);
     Student getByCodeBarcode(String code);
 
