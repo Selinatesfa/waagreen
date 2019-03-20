@@ -28,7 +28,7 @@ function clickStart(){
 					//alert(errorObject.responseJSON.errors(0)); 
 					alert("error")
 				}
-			}
+			});
 	};
 	function getSelectedOption(sel) {
 	    var opt;

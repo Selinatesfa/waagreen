@@ -36,6 +36,4 @@ public class Entry {
 	public void setMonthYear(String monthYear) {
 		this.monthYear = monthYear;
 	}
-
-
 }

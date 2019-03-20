@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulmastyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/customstyle.css}"/>
+    <title layout:title-pattern=" $CONTENT_TITLE - $LAYOUT_TITLE">MUM</title>
+</head>
+<body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+<header>
+    <nav th:replace="fragments/nav :: nav">This nav content
+        is going to be replaced.
+    </nav>
+</header>
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <div layout:fragment="main-content">
+            <h1>This is the Layout's main section</h1>
+            <p>This content will be replaced if the page using the layout
+                also defines a layout:fragment="content" segment.</p>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+<script type="text/javascript" th:src="@{/js/attendance.js}"></script>
+</body>
+</html>

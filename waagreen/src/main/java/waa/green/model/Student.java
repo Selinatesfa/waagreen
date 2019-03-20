@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,6 +35,22 @@ public class Student {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
+    public Code getCode() {
+        return code;
+    }
+
+    public void setCode(Code code) {
+        this.code = code;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public long getId() {
         return id;
     }
@@ -52,17 +67,9 @@ public class Student {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-	@Override
+    @Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-    
+
 }
