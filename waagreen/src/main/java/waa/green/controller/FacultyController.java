@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import waa.green.model.Attendance;
 import waa.green.model.Course;
+import waa.green.model.PercentageExtrapoint;
 import waa.green.repository.BlockRepository;
 import waa.green.service.AttendanceService;
 import waa.green.service.FacultyService;
@@ -28,7 +29,10 @@ import waa.green.service.FacultyService;
 public class FacultyController {
 	@Autowired
 	FacultyService facultyservice;
-	
+	public void data(Model model) {
+		model.addAttribute("block", facultyservice.getAllBlock());
+		model.addAttribute("course", facultyservice.getAllCourse());
+	}
 	@GetMapping("/faculty")
 	 public String faculty(Model model) {
 						model.addAttribute("block", facultyservice.getAllBlock());
@@ -52,22 +56,17 @@ public class FacultyController {
 	 }
 	@GetMapping("/facultyreport")
 	public String facultyreportpost(@RequestParam("course") String courseId, @RequestParam String block,Model model)
-	{	
-		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-		Date result;
-		try {
-			result = df.parse(block);
-			List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), result);
-				
-			System.out.println(facultyservice.findById(Long.parseLong(courseId)).get()+"courseob");
-			model.addAttribute("result", facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), result));
-			 return "faculty/facultyreport";
-		} catch (ParseException e) {
+	{	data(model);
 			
-			e.printStackTrace();
-		}  
-						
-		
-	 return "faculty/facultyreport";
+			List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block);
+		//if(facultyservice.calculateextrapoints(resultlist)getClass())
+			for(PercentageExtrapoint pr:facultyservice.calculateextrapoints(resultlist)) {
+					}
+			
+			 model.addAttribute("percentdata",facultyservice.calculateextrapoints(resultlist));
+				//model.addAttribute("result", facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block));
+			 return "faculty/Faculty";
+							
+	
 	}
 }

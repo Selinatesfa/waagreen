@@ -21,7 +21,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
 @Entity
 public class Attendance {
     @Id
