@@ -1,6 +1,7 @@
 package waa.green.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import waa.green.model.Attendance;
 import waa.green.model.Entry;
-import waa.green.model.EntryReportData;
 import waa.green.model.Student;
 import waa.green.service.AttendanceService;
 import waa.green.service.EntryService;
