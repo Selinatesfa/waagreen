@@ -23,17 +23,19 @@ public class EntryController {
     EntryService entryService;
     @Autowired
     AttendanceService attendanceService;
-      public void data(Model model) {
+
+    public void data(Model model) {
         model.addAttribute("entries", entryService.findAllEntry());
     }
 
     @RequestMapping("/entryreport")
-    public String  report(@RequestParam("entry") String monthYear, Model model) {
-data(model);
+    public String report(@RequestParam("entry") String monthYear, Model model) {
+        data(model);
         Entry entry = entryService.findEntryByMonthYear(monthYear);
-        List<Attendance> entryReportData= entryService.generateReportByEntry(entry.getId());
+        List<Attendance> entryReportData = entryService.generateReportByEntry(entry.getId());
 
-        model.addAttribute("percentdata",entryService.calculateextrapoints(entryReportData));
+        model.addAttribute("percentdata", entryService.calculateextrapoints(entryReportData));
+        model.addAttribute("monthYear", monthYear);
         return "Admin/generateReportByEntry";
     }
 }
