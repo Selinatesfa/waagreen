@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Detail</title>
-    <link href="css/home.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/home.css}" href="../css/home.css" />
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
 </head>
 <body>
 <div id="global">
     <h4>The student Accumulative information</h4>
     <p>
-    <h5>Details:</h5>
-    Total sessions possible:  <!--/*@thymesVar id="firstName" type="templates"*/-->
-    <span th:text="${firstName}"></span><br/>
-    Toatal sessions possible: <!--/*@thymesVar id="lastName" type="templates"*/-->
-    <span th:text="${lastName}"></span><br/>
-    Percent attendance: <!--/*@thymesVar id="dateOfEntry" type="templates"*/-->
-    <span th:text="${dateOfEntry}"></span>
 
-    Block: <select th:field="*{blockList}">
-    <option th:value="'J'" th:text="January"></option>
-    <option th:value="'F'" th:text="February"></option>
-    <option th:value="'M'" th:text="March"></option>
-    <option th:value="'A'" th:text="April"></option>
-    <option th:value="'Ma'" th:text="May"></option>
-    <option th:value="'Jun'" th:text="June"></option>
-    <option th:value="'Ju'" th:text="July"></option>
-    <option th:value="'AU'" th:text="August"></option>
-    <option th:value="'S'" th:text="September"></option>
-    <option th:value="'D'" th:text="December"></option>
-</select>
-
-
+    Total sessions possible:<span th:text="#{student.form.id}">></span><br/>
+    Total sessions attended:<br/>
+    Percent attendance:     <br/>
+        Block:
+    <tr>
+        <th:block th:each="block : ${blockList}">
+            <option value="default">Select a block</option>
+            <option th:value="${block.getId()}" th:text="${block.getNumberOfBlock()}"></option>
+        </th:block>
+    </tr>
     </p>
-</div>
 
+
+    <table>
+        <tr>
+           <td rowspan="2">Date</td>
+            <td th:each="att : ${attendanceList}">
+                <option value="default"></option>
+                <option th:value="${att.attendanceDate}" th:text="${att.attendanceDate}"></option>
+              </td>
+        </tr>
+        <tr>
+
+
+            <td rowspan="2">Present</td>
+            <td th:each="att : ${attendanceList}">
+                <option value="default"></option>
+                <option th:value="${att.present}" th:text="${att.present}"></option>
+            </td>
+
+        </tr>
+</table>
+
+</div>
+</p>
 </body>
 </html>
