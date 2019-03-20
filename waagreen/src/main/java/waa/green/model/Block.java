@@ -48,6 +48,14 @@ public class Block {
 	@JoinColumn(name = "session_id")
 	private Session session;
 
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
 	@Override
 	public String toString() {
 		return "Block [startDate=" + startDate + ", endDate=" + endDate + ", yearEntry=" + yearEntry
