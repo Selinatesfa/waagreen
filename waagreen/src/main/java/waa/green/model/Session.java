@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder
@@ -23,23 +21,29 @@ public class Session {
     @Column(name = "session_type")
     private String type;
     private int days;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public int getDays() {
-		return days;
-	}
-	public void setDays(int days) {
-		this.days = days;
-	}
 
-  }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+}
