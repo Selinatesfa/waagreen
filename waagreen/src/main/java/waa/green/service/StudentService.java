@@ -9,7 +9,7 @@ import waa.green.model.PercentageExtrapoint;
 
 @Service
 public interface StudentService {
-	public List<Attendance> generatereportbyblock(Student studentid,String block);
+	public List<Attendance> generatereportbyblock(Long studentid,String block);
     Student getStudentByCode(String code);
     Student getStudentByFirstNameAndLastName(String firstName, String lastName);
     public Student findByEmail(String email);
