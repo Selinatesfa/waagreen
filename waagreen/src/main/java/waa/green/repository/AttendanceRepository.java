@@ -24,8 +24,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     		"INNER JOIN STUDENT STD ON ATTEND.STUDENT_ID = STD.STUDENT_ID\n" + 
     		"INNER JOIN COURSE_STUDENT CS ON STD.STUDENT_ID = CS.STUDENT_ID\n" + 
     		"INNER JOIN COURSE COR ON CS.ID = COR.ID\n" + 
-    		"WHERE COR.ID = ?1 AND BL.number_of_block = ?2\n" +
-    		"GROUP BY ATTEND.STUDENT_ID;", nativeQuery=true)
+    		"WHERE COR.ID = ?1 AND BL.NUMBER_OF_BLOCK = ?2\n" , nativeQuery=true)
     public List<Attendance> generatereportbycourseandblock(Course course, String block);
 
 	@Query(value = "SELECT \n" +

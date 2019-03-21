@@ -29,7 +29,7 @@ public class LoginController {
 	@GetMapping( "/login" )
     public ModelAndView login(){
 		 Role r= new Role();
-	        r.setRole("ADMIN");
+	        r.setRole("FACULTY");
 	        roleservice.saverole(r);
 	        Set<Role> rolelist= new HashSet<>();
 	        rolelist.add(r);
