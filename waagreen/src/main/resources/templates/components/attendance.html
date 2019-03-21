@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
@@ -32,31 +31,29 @@
                     </div>
                 </div>
                 <div class="level-item">
-                    <button id="uploadFile" type="button" class="button is-primary">Button</button>
+                    <button id="uploadFile" type="button" class="button is-primary">Upload</button>
                 </div>
+                <di class="level-item"><span id="fileError">ERROR MESSAGE  SHOULD BEE HERE</span></di>
             </div>
-            <!--<div class="level-right">
-                <span id="file-error"></span>
-            </div>-->
         </div>
     </form>
-
-    <table class="table is-fullwidth is-hoverable is-bordered">
-        <thead>
-        <tr>
-            <th></th>
-            <th>Student</th>
-            <th>Attendance</th>
-            <th>Block</th>
-            <th>Attend Date</th>
-            <th>Period</th>
-            <th>Present</th>
-            <th>Location</th>
-        </tr>
-        </thead>
-        <tbody id="attendanceTableBody">
-        </tbody>
-    </table>
+    <div class="section">
+        <table class="table is-fullwidth is-hoverable is-bordered">
+            <thead>
+            <tr>
+                <th>Student</th>
+                <th>Attendance</th>
+                <th>Block</th>
+                <th>Attend Date</th>
+                <th>Period</th>
+                <th>Present</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody id="attendanceTableBody">
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

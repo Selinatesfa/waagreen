@@ -10,7 +10,6 @@ import waa.green.model.Attendance;
 import waa.green.model.AttendanceFormData;
 import waa.green.service.AttendanceService;
 import waa.green.validation.FileValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +29,8 @@ public class AttendanceController {
         FileValidator fileValidator = new FileValidator();
         fileValidator.validate(attendanceFormData, bindingResult);
         String[] suppressedFields = bindingResult.getSuppressedFields();
-        if (suppressedFields.length > 0) {
-            throw new FileTypeExceptionHandler();
+        if (suppressedFields.length > 0 || bindingResult.hasErrors()) {
+            throw new FileTypeExceptionHandler(bindingResult);
         }
 
         List<Attendance> attendances = new ArrayList<>();

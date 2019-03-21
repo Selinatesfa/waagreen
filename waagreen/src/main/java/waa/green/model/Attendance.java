@@ -1,6 +1,7 @@
 package waa.green.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,10 +26,13 @@ public class Attendance implements Serializable {
     @Column(name = "attend_id")
     private long id;
     @Column( name = "attendance_date")
+	@JsonFormat
+			(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date attendanceDate;
     private String period;
     private Integer present;
 
+	@JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;

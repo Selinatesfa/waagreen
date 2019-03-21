@@ -17,8 +17,8 @@
     }
 
     function sendRequest() {
+        /*$('#fileError').text("Error Text");*/
         var data = new FormData($('#attendance')[0]);
-        console.log(data);
         $.ajax({
             url: URL,
             type: "POST",
@@ -34,14 +34,16 @@
         });
 
         function success(data) {
-            //$('#attendanceTableBody').clear();
+            var attendanceTable = $('#attendanceTableBody');
+            attendanceTable.html('');
+            console.log(data);
             var row = '';
             for (var i = 0; i < data.length; i++) {
                 row += '<tr>' +
-                    '<td>' +
+                    /*'<td>' +
                     '<span class="icon has-text-success">\n' +
                     '<i class="fas fa-check-square"></i>\n' +
-                    '</span></td>' +
+                    '</span></td>' +*/
                     '<td>' + data[i].student.code.studentId + '</td>' +
                     '<td>' + data[i].attendanceType.type + '</td>' +
                     '<td>' + (data[i].block != null ? data[i].block.block : 'Empty') + '</td>' +
@@ -51,11 +53,22 @@
                     '<td> ' + data[i].location.name + '</td>' +
                     '</tr>';
             }
-            $('#attendanceTableBody').append(row);
+            attendanceTable.append(row);
         }
 
         function error(xhr, status, exception) {
-            console.log(xhr);
+            var errorJson = xhr.responseJSON;
+            var error = $('#fileError');
+            error.html('');
+            if (errorJson.errorType == "ValidationError") {
+                var errorList = errorObject.responseJSON.errors;
+                var errMsg = '';
+                $.each(errorList, function (i, error) {
+                    errMsg += (error.message + '<br />');
+                });
+                error.html('');
+                error.html(errMsg)
+            }
         }
     }
 

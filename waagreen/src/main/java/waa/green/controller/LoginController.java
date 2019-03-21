@@ -21,33 +21,32 @@ import waa.green.service.RoleService;
 import waa.green.service.UserService;
 @Controller
 public class LoginController {
-	@Autowired
-	UserService userService;
-	@Autowired
-	RoleService roleservice;
-	
-	@GetMapping( "/login" )
-    public ModelAndView login(){
-		 Role r= new Role();
-	        r.setRole("STUDENT");
-	        roleservice.saverole(r);
-	        Set<Role> rolelist= new HashSet<>();
-	        rolelist.add(r);
-		User user= new User("Brad58@mum.edu","123456","ss","sss",1,rolelist);
-		userService.saveUser(user);
+    @Autowired
+    UserService userService;
+    @Autowired
+    RoleService roleservice;
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        Role r = new Role();
+        r.setRole("STUDENT");
+        roleservice.saverole(r);
+        Set<Role> rolelist = new HashSet<>();
+        rolelist.add(r);
+        User user = new User("Lenny@mum.edu", "123456", "ss", "sss", 1, rolelist);
+        userService.saveUser(user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
     }
- 
- @GetMapping("/home")
- public String home() {
-	 return "home";
- }
- @GetMapping("/access-denied")
- public String accessdenied() {
-	 return "access-denied";
- }
- 
-	
-	    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessdenied() {
+        return "access-denied";
+    }
+}

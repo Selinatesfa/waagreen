@@ -16,6 +16,7 @@ public interface StudentRepository extends CrudRepository<Student,Long> {
     Attendance attendanceInfoAccumulative(@Param("id") Long id);
    
     Student getAllByCode_StudentId(String code);
+    /*Sele*/
     Student getByCodeBarcode(String code);
 
     @Query(value = "select std from Student std where std.firstName = :firstName and std.lastName = :lastName")
