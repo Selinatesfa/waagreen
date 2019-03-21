@@ -21,9 +21,8 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "user")
 public class User {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int id;
 	@Column(name = "email")

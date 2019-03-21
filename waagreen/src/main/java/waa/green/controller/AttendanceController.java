@@ -18,12 +18,12 @@ public class AttendanceController {
     @Autowired
     AttendanceService attendanceService;
 
-    @GetMapping("/attendance")
+    @GetMapping("/admin/attendance")
     public String attendance() {
-        return "components/attendance";
+        return "Admin/attendance";
     }
 
-    @PostMapping("/attendance")
+    @PostMapping("/admin/attendance")
     public @ResponseBody
     List<Attendance> registerAttendances(AttendanceFormData attendanceFormData, BindingResult bindingResult) {
         FileValidator fileValidator = new FileValidator();
