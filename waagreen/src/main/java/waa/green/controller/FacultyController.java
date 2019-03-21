@@ -44,17 +44,12 @@ public class FacultyController {
 	 }
 	
 	@GetMapping("/Restfaculty")
-	 public @ResponseBody List<Attendance> facultyreport( @RequestParam String course, @RequestParam String block,Model model) {
-				
-//		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-//		Date result;
-//		try {			
-//			result = df.parse(block);
-//					} catch (ParseException e) {
-//			
-//			e.printStackTrace();
-		//}  
-		return null;
+	 public @ResponseBody List<PercentageExtrapoint> facultyreport( @RequestParam String course, @RequestParam String block,Model model) {
+		List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(course)).get(), block);
+					for(PercentageExtrapoint pr:facultyservice.calculateextrapoints(resultlist)) {
+					}
+						 return	 facultyservice.calculateextrapoints(resultlist);
+			
 	 }
 	
 	@GetMapping("/facultyreport")
@@ -72,19 +67,7 @@ public class FacultyController {
 							
 	
 	}
-	@GetMapping("/facultyreportrest")
-	public String facultyreportpostrest(){	//data(model);
 			
-//			List<Attendance> resultlist=facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block);
-//		//if(facultyservice.calculateextrapoints(resultlist)getClass())
-//			for(PercentageExtrapoint pr:facultyservice.calculateextrapoints(resultlist)) {
-//					}
-//			
-//			 model.addAttribute("percentdata",facultyservice.calculateextrapoints(resultlist));
-//				//model.addAttribute("result", facultyservice.generatereportbycourseandblock(facultyservice.findById(Long.parseLong(courseId)).get(), block));
-			 return "faculty/facultyreport";
-							
 	
-	}
 	
 }
