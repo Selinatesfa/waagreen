@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.codehaus.jackson.annotate.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -27,7 +25,7 @@ public class Block {
     private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
-    @Column( name = "year_of_entry")
+    @Column(name = "year_of_entry")
     private Date yearEntry;
     @Column(name = "number_of_block")
     private String block;
@@ -35,7 +33,7 @@ public class Block {
     @Column(name = "canceled_days")
     private Integer canceledDays;
 
-	@JsonBackReference
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
 
@@ -43,95 +41,78 @@ public class Block {
     @OneToMany(mappedBy = "block")
     private List<Attendance> attendances;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "session_id")
-	private Session session;
-//August 2018 - 2018-09-09
-	public Integer getCanceledDays() {
-		return canceledDays;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "session_id")
+    private Session session;
 
-	public void setCanceledDays(Integer canceledDays) {
-		this.canceledDays = canceledDays;
-	}
+    public Integer getCanceledDays() {
+        return canceledDays;
+    }
 
-		public Session getSession() {
-		return session;
-	}
+    public void setCanceledDays(Integer canceledDays) {
+        this.canceledDays = canceledDays;
+    }
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
+    public Session getSession() {
+        return session;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public Date getStartDate() {
+        return startDate;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public Date getEndDate() {
+        return endDate;
+    }
 
-	public Date getYearEntry() {
-		return yearEntry;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public String getBlock() {
-		return block;
-	}
+    public Date getYearEntry() {
+        return yearEntry;
+    }
 
-	public void setBlock(String block) {
-		this.block = block;
-	}
+    public String getBlock() {
+        return block;
+    }
 
-	public void setYearEntry(Date yearEntry) {
-		this.yearEntry = yearEntry;
-	}
+    public void setBlock(String block) {
+        this.block = block;
+    }
 
+    public void setYearEntry(Date yearEntry) {
+        this.yearEntry = yearEntry;
+    }
 
-	public Set<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-
-	public List<Attendance> getAttendances() {
-		return attendances;
-	}
-
-	public void setAttendances(List<Attendance> attendances) {
-		this.attendances = attendances;
-	}
-
-	@Override
-	public String toString() {
-		return "Block{" +
-				"id=" + id +
-				", startDate=" + startDate +
-				", endDate=" + endDate +
-				", yearEntry=" + yearEntry +
-				", block='" + block + '\'' +
-				", canceledDays=" + canceledDays +
-				", courses=" + courses +
-				", attendances=" + attendances +
-				", session=" + session +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "Block{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", yearEntry=" + yearEntry +
+                ", block='" + block + '\'' +
+                ", canceledDays=" + canceledDays +
+                ", courses=" + courses +
+                ", attendances=" + attendances +
+                ", session=" + session +
+                '}';
+    }
 }

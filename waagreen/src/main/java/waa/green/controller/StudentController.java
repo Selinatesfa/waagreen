@@ -57,7 +57,7 @@ public class StudentController {
         model.addAttribute("result", studentService.calculateextrapoints(resultlist));
 
         Block bl = blockService.getBlockByNumnerOfBlock(block);
-        List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
+        List<BlockReportData> blockReportDatas = blockService.getBlockReportData(bl, stud);
 
         model.addAttribute("blockReportDatas", blockReportDatas);
         return "student/Student";

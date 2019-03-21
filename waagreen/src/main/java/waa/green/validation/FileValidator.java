@@ -1,6 +1,5 @@
 package waa.green.validation;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +16,9 @@ public class FileValidator implements Validator {
     public void validate(Object object, Errors errors) {
         AttendanceFormData attendanceFormData = (AttendanceFormData) object;
         for(MultipartFile file : attendanceFormData.getFiles()){
+            System.out.println("File Validator File Type: " + file.getContentType());
             if(!file.getContentType().equals( contentType))
-                errors.rejectValue("contentType", "Content type doesn't match.");
+                errors.rejectValue("files", "Content type doesn't match.");
         }
     }
 }
