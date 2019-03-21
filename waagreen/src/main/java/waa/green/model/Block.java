@@ -1,17 +1,13 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -40,16 +36,18 @@ public class Block {
     @Column(name = "canceled_days")
     private Integer canceledDays;
 
+	@JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "block")
     private List<Attendance> attendances;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "session_id")
 	private Session session;
-
+//August 2018 - 2018-09-09
 	public Integer getCanceledDays() {
 		return canceledDays;
 	}
@@ -64,12 +62,6 @@ public class Block {
 
 	public void setSession(Session session) {
 		this.session = session;
-	}
-
-	@Override
-	public String toString() {
-		return "Block [startDate=" + startDate + ", endDate=" + endDate + ", yearEntry=" + yearEntry
-				+ ", numberOfBlock=" + block + ", courses=" + courses + ", attendances=" + attendances + "]";
 	}
 
 	public long getId() {
@@ -127,5 +119,20 @@ public class Block {
 
 	public void setAttendances(List<Attendance> attendances) {
 		this.attendances = attendances;
+	}
+
+	@Override
+	public String toString() {
+		return "Block{" +
+				"id=" + id +
+				", startDate=" + startDate +
+				", endDate=" + endDate +
+				", yearEntry=" + yearEntry +
+				", block='" + block + '\'' +
+				", canceledDays=" + canceledDays +
+				", courses=" + courses +
+				", attendances=" + attendances +
+				", session=" + session +
+				'}';
 	}
 }

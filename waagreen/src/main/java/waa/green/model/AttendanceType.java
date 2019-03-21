@@ -1,5 +1,7 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 
 import lombok.Builder;
@@ -7,9 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 @Data
@@ -24,7 +23,16 @@ public class AttendanceType {
     private long id;
     private String type;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "attendanceType")
     private List<Attendance> attendances;
+
+    @Override
+    public String toString() {
+        return "AttendanceType{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", attendances=" + attendances +
+                '}';
+    }
 }

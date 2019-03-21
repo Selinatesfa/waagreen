@@ -3,9 +3,9 @@ package waa.green.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import waa.green.formatter.DateFormatter;
 import waa.green.model.Attendance;
-import waa.green.model.AttendanceFormData;
 import waa.green.repository.AttendanceRepository;
 import waa.green.service.*;
 import java.io.IOException;
@@ -40,12 +40,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public List<Attendance> registerAttendances(AttendanceFormData attendanceFormData) {
+    public List<Attendance> registerAttendances(MultipartFile file) {
         List<Attendance> attendances = new ArrayList<>();
         try {
-            if (attendanceFormData != null) {
-                if (attendanceFormData.getFile() != null) {
-                    String str = new String(attendanceFormData.getFile().getBytes(), StandardCharsets.UTF_8);
+            if (file != null) {
+                if (file != null) {
+                    String str = new String(file.getBytes(), StandardCharsets.UTF_8);
                     String[] lines = str.split(System.getProperty("line.separator"));
                     for (String line : lines) {
                         String[] columns = line.split(",");
@@ -92,8 +92,8 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
     private Attendance saveAttendance(Attendance attendance, Date date){
         attendance.setBlock(blockService.getBlockBetween(date));
-        /*if(attendance.getStudent() != null && attendance.getBlock() != null)
-            attendance = attendanceRepository.save(attendance);*/
+        if(attendance.getStudent() != null && attendance.getBlock() != null)
+            attendance = attendanceRepository.save(attendance);
         return attendance;
     }
 

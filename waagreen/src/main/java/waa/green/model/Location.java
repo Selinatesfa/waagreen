@@ -1,5 +1,7 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +25,8 @@ public class Location {
     @Column(name = "short_name")
     private String shortName;
 
+
+    @JsonBackReference
     @OneToMany(mappedBy = "location")
     private List<Attendance> attendances;
 
@@ -57,5 +61,13 @@ public class Location {
     public void setAttendances(List<Attendance> attendances) {
         this.attendances = attendances;
     }
-
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", attendances=" + attendances +
+                '}';
+    }
 }
