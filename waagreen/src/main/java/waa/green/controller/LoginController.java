@@ -5,7 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;;
+import org.springframework.web.bind.annotation.*;
 import waa.green.model.Role;
 import waa.green.model.User;
 import waa.green.service.RoleService;
