@@ -14,4 +14,7 @@ public interface BlockRepository extends CrudRepository<Block, Long> {
     List<Block> findAll();
     @Query(value = "select b from Block b where b.startDate<= :date AND :date <= b.endDate")
     Block getBlockBetween(Date date);
+
+    @Query(value = "SELECT b from Block  b where b.block = :block")
+    Block getBlockByNumnerOfBlock(String block);
 }

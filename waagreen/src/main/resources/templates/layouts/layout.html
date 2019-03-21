@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/bulmastyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awsome.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/customstyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loader.css}"/>
+
     <title layout:title-pattern=" $CONTENT_TITLE - $LAYOUT_TITLE">MUM</title>
 </head>
 <body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+<div id="loader-container">
+    <div class="custom-loader"></div>
+</div>
 <header>
     <nav th:replace="fragments/nav :: nav">This nav content
         is going to be replaced.

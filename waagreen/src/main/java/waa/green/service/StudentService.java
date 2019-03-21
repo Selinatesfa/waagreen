@@ -1,11 +1,9 @@
 package waa.green.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import waa.green.model.Student;
-import waa.green.model.StudentReportDate;
-import waa.green.model.Attendance;
-import waa.green.model.PercentageExtrapoint;
+import waa.green.model.*;
 
 @Service
 public interface StudentService {
@@ -14,4 +12,5 @@ public interface StudentService {
     Student getStudentByFirstNameAndLastName(String firstName, String lastName);
     public Student findByEmail(String email);
     public StudentReportDate calculateextrapoints(List<Attendance> attendance);
+
 }

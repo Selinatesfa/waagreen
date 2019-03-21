@@ -13,3 +13,4 @@ public interface AttendanceService {
     List<Attendance> findAttendancesByEntry(long id);
     List<Attendance> registerAttendances(AttendanceFormData attendanceFormData);
 }
+
