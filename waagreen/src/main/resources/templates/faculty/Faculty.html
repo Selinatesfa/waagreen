@@ -7,11 +7,21 @@
     <title>Attendance</title>
 </head>
 <body>
+<<<<<<< HEAD
+<div layout:fragment="main-content">
+<br>
+<div class="admin container">
+<form  >
+<select id="blockid" name="block" class="select">
+<option value=0>Select Block</option>
+<option  th:each="bl : ${block}" th:text="${bl.block}" th:value="${bl.block}" >hjjh</option> 
+=======
 <div layout:fragment="main-content"><br>
     <form>
         <select id="blockid" name="block" class="select">
             <option value=0>Select Block</option>
             <option th:each="bl : ${block}" th:text="${bl.block}" th:value="${bl.block}">hjjh</option>
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 
         </select>
         <label></label><select id="courseid" name="course" class="select">

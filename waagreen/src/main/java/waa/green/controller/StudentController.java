@@ -44,7 +44,12 @@ public class StudentController {
     @GetMapping("/student")
     public String viewProfileModel(Model model) {
         data(model);
+<<<<<<< HEAD
+
+        return "student/student";
+=======
         return "student/StudentDetails";
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
     }
 
     @GetMapping("/studentDetails")
