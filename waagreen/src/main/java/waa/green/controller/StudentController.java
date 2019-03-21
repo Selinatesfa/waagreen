@@ -44,8 +44,8 @@ public class StudentController {
     @GetMapping("/student")
     public String viewProfileModel(Model model) {
         data(model);
-        return "student/student";
-        }
+        return "student/StudentDetails";
+    }
 
     @GetMapping("/studentDetails")
     public String showForm(@RequestParam("block") String block, Model model, Authentication authentication) {
