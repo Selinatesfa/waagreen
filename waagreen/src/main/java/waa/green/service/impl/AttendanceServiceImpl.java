@@ -66,6 +66,11 @@ public class AttendanceServiceImpl implements AttendanceService {
         return attendances;
     }
 
+    @Override
+    public Attendance findAttendanceForBlockReport(long block_id, long student_id, Date date) {
+        return attendanceRepository.findAttendanceForBlockReport(block_id,student_id,date);
+    }
+
     private Attendance rcData(String[] columns) {
         Attendance attendance = new Attendance();
         Date date = dateFormatter.parse(columns[1], null);
