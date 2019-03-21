@@ -3,58 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Detail</title>
-    <link href="css/main.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css"/>
+    <link href="css/home.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/home.css}" href="../css/home.css"/>
 </head>
 <body>
-<nav class="navbar is-dark">
-	<div class="container">
-	<div class="navbar-brand">
-		<a class="navbar-item" href="admin/admin"> 
-			<h1>ADMIN</h1>	
-		</a>
-	</div>
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/faculty/faculty"> 
-		<h1>FACULTY</h1>
-			</a>
-	</div>
-	
-	<div class="navbar-brand">
-		<a class="navbar-item" href="student/student"> 
-		<h1>STUDENT</h1>
-			</a>
-	</div>
-	<div class="navbar-menu">
-		<div class="navbar-end">
-			
-		</div>
-	</div>
-	</div>
-   
-    
-</nav>
-<div id="global">
-    <h4>The student Accumulative information</h4>
 
+<div class="box" id="center-panel-grid">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
 
-   
-    <div>
-        <form th:action="@{/student/studentDetails}" method="get">
-            <select class="blue-margin" name="block">
-                <option value="default">Select block</option>
-                <option th:each="block : ${blockList}" th:value="${block.block}" th:text="${block.block}"></option>
-            </select>
-                    <input th:type="submit" th:value="Submit"/>
-        </form>
+            <h4><strong>>>>>>>>The student Accumulative information<<<<<<<<</strong></h4>
+        </a>
 
     </div>
-
-    <div ></div>
-    
-
-
 </div>
+        <div>
+        <div class="dropdown">
+            <form th:action="@{/student/studentDetails}" method="get">
+                <select class="blue-margin" name="block">
+                    <option value="default"><span>Select block</span></option>
+                    <option th:each="block : ${blockList}" th:value="${block.block}"
+                            th:text="${block.block}"></option>
+                </select>
+
+
+                <input class=" table is-fullwidth is-hoverable" th:type="submit" th:value="Submit"/>
+            </form>
+
+        </div>
+    </div>
 
 </body>
 </html>

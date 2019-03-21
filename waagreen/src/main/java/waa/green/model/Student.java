@@ -1,8 +1,10 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,8 +20,17 @@ public class Student {
     private long id;
     @Column(name = "first_name")
     private String firstName;
-    @Column( name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entry")
@@ -29,8 +40,17 @@ public class Student {
     @JoinColumn(name = "code_id", nullable = false)
     private Code code;
 
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
 
     public Code getCode() {
         return code;
@@ -65,8 +85,8 @@ public class Student {
     }
 
     @Override
-	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
-	}
+    public String toString() {
+        return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+    }
 
 }

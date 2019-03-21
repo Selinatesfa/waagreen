@@ -1,17 +1,11 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import javax.validation.Valid;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +15,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 public class Block {
     @Id
@@ -32,7 +25,7 @@ public class Block {
     private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
-    @Column( name = "year_of_entry")
+    @Column(name = "year_of_entry")
     private Date yearEntry;
     @Column(name = "number_of_block")
     private String block;
@@ -40,92 +33,86 @@ public class Block {
     @Column(name = "canceled_days")
     private Integer canceledDays;
 
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blocks")
     private Set<Course> courses = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "block")
     private List<Attendance> attendances;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "session_id")
-	private Session session;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "session_id")
+    private Session session;
 
-	public Integer getCanceledDays() {
-		return canceledDays;
-	}
+    public Integer getCanceledDays() {
+        return canceledDays;
+    }
 
-	public void setCanceledDays(Integer canceledDays) {
-		this.canceledDays = canceledDays;
-	}
+    public void setCanceledDays(Integer canceledDays) {
+        this.canceledDays = canceledDays;
+    }
 
-		public Session getSession() {
-		return session;
-	}
+    public Session getSession() {
+        return session;
+    }
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
-	@Override
-	public String toString() {
-		return "Block [startDate=" + startDate + ", endDate=" + endDate + ", yearEntry=" + yearEntry
-				+ ", numberOfBlock=" + block + ", courses=" + courses + ", attendances=" + attendances + "]";
-	}
+    public long getId() {
+        return id;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public Date getStartDate() {
+        return startDate;
+    }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public Date getEndDate() {
+        return endDate;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public Date getYearEntry() {
+        return yearEntry;
+    }
 
-	public Date getYearEntry() {
-		return yearEntry;
-	}
+    public String getBlock() {
+        return block;
+    }
 
-	public String getBlock() {
-		return block;
-	}
+    public void setBlock(String block) {
+        this.block = block;
+    }
 
-	public void setBlock(String block) {
-		this.block = block;
-	}
+    public void setYearEntry(Date yearEntry) {
+        this.yearEntry = yearEntry;
+    }
 
-	public void setYearEntry(Date yearEntry) {
-		this.yearEntry = yearEntry;
-	}
-
-
-	public Set<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-
-	public List<Attendance> getAttendances() {
-		return attendances;
-	}
-
-	public void setAttendances(List<Attendance> attendances) {
-		this.attendances = attendances;
-	}
+    @Override
+    public String toString() {
+        return "Block{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", yearEntry=" + yearEntry +
+                ", block='" + block + '\'' +
+                ", canceledDays=" + canceledDays +
+                ", courses=" + courses +
+                ", attendances=" + attendances +
+                ", session=" + session +
+                '}';
+    }
 }

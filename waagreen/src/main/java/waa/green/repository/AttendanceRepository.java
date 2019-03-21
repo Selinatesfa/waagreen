@@ -35,7 +35,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 			"\tINNER JOIN BLOCK ON ATTEND.BLOCK_ID = BLOCK.BLOCK_ID\n" +
 			"\tINNER JOIN WEEK_SESSION  W_S ON BLOCK.SESSION_ID= W_S .SESSION_ID\n" +
 			"WHERE STD.ENTRY = ?1", nativeQuery = true)
-    public List<Attendance> generateReportByEntry(Long entryId);
+    List<Attendance> generateReportByEntry(Long entryId);
 
    // @Query(value="select a from Attendance a join Student s where a.Student_id=:id")
     public List<Attendance> findAttendanceByStudentId(@Param("id") Long id);
@@ -53,4 +53,6 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "WHERE BL.BLOCK_ID = :id AND ST.STUDENT_ID = :studentId", nativeQuery = true)
     public List<Attendance> findAttendanceByStudentId(@Param("id") Long id, long studentId);
 
+    @Query(value = "select a from Attendance a where a.block.id=:block_id and a.student.id=:student_id and a.attendanceDate=:date")
+	Attendance findAttendanceForBlockReport(long block_id, long student_id, Date date);
 }

@@ -1,21 +1,18 @@
 package waa.green.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder
@@ -29,23 +26,31 @@ public class Attendance implements Serializable {
     @Column(name = "attend_id")
     private long id;
     @Column( name = "attendance_date")
+	@JsonFormat
+			(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date attendanceDate;
     private String period;
     private Integer present;
 
+	@JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;
+
+	@JsonManagedReference
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "location_id")
     private Location location;
 
+
+	@JsonManagedReference
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "type_id")
     private AttendanceType attendanceType;
 
+    @JsonManagedReference
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "block_id")
@@ -115,5 +120,17 @@ public class Attendance implements Serializable {
 		this.block = block;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Attendance{" +
+				"id=" + id +
+				", attendanceDate=" + attendanceDate +
+				", period='" + period + '\'' +
+				", present=" + present +
+				", student=" + student +
+				", location=" + location +
+				", attendanceType=" + attendanceType +
+				", block=" + block +
+				'}';
+	}
 }

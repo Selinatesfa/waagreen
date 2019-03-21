@@ -14,46 +14,57 @@ import org.apache.commons.logging.Log;
 import org.springframework.web.bind.annotation.RequestParam;
 import waa.green.model.Attendance;
 import waa.green.model.Block;
+import waa.green.model.BlockReportData;
 import waa.green.model.Student;
 import waa.green.service.AttendanceService;
 import waa.green.service.BlockService;
 import waa.green.service.StudentService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-	 @Autowired
-	    private StudentService studentService;
-	    @Autowired
-	    private AttendanceService attendanceService;
-	    @Autowired
-	    private BlockService blockService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private AttendanceService attendanceService;
+    @Autowired
+    private BlockService blockService;
 
-public void data(Model model) {
-	model.addAttribute("blockList",blockService.findAllBlocks());
-	 }
+    public void data(Model model) {
+        model.addAttribute("blockList", blockService.findAllBlocks());
+    }
+
     private static final Log logger = LogFactory.getLog(StudentController.class);
-  
+
     @GetMapping("/student")
-    public String viewProfileModel(Model model){
-                 data(model);
-                                
+    public String viewProfileModel(Model model) {
+        data(model);
+
         return "student/StudentDetails";
-        }
-  
+    }
+
     @GetMapping("/studentDetails")
-    public String showForm(@RequestParam("block") String block,Model model,Authentication authentication){
-    	String email=authentication.getName();
-    	Student stud=studentService.findByEmail(email);
-    	  	
-    	List<Attendance> resultlist=studentService.generatereportbyblock(stud.getId(),block);
-        	model.addAttribute("result",studentService.calculateextrapoints(resultlist) ); 
-    	 return "student/Student";	
-    }  	
+    public String showForm(@RequestParam("block") String block, Model model, Authentication authentication) {
+        String email = authentication.getName();
+        Student stud = studentService.findByEmail(email);
+
+        List<Attendance> resultlist = studentService.generatereportbyblock(stud.getId(), block);
 
 
+           // Block bl = blockService.getBlockByNumnerOfBlock(block);
+             //  List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
+            model.addAttribute("result", studentService.calculateextrapoints(resultlist));
+           //  model.addAttribute("blockReportDatas", blockReportDatas);
+
+        Block bl = blockService.getBlockByNumnerOfBlock(block);
+        List<BlockReportData> blockReportDatas = blockService.getBlockReportData(bl, stud);
+
+        model.addAttribute("blockReportDatas", blockReportDatas);
+        return "student/Student";
+    }
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="ISO-8859-1">
     <title>Computer ProfessionalS Program </title>
@@ -10,58 +12,37 @@
             th:href="@{/js/student.js}"></script>
 </head>
 <body>
-<nav class="navbar is-dark">
-	<div class="container">
-	<div class="navbar-brand">
-		<a class="navbar-item" href="admin/admin"> 
-			<h1>ADMIN</h1>	
-		</a>
-	</div>
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/faculty/faculty"> 
-		<h1>FACULTY</h1>
-			</a>
-	</div>
-	
-	<div class="navbar-brand">
-		<a class="navbar-item" href="student/student"> 
-		<h1>STUDENT</h1>
-			</a>
-	</div>
-	<div class="navbar-menu">
-		<div class="navbar-end">
-			
-		</div>
-	</div>
-	</div>
-   
-    
-</nav>
-<div class="admin container">
- Total sessions possible:   <div th:text="${result.possibledays}">   Total sessions possible:</div>
- Total sessions attended:<div th:text="${result.daysattended}"> Total sessions attended:</div>
- percentage<div th:text="${result.per}"> percentage</div>
- 
-<table class="table is-fullwidth is-hoverable" id="result">
-    <tr>
-    
-      <th> Date</th>
-    
-      <th>Present</th>
-    
-    </tr>
- 
-  <tr th:each="attendd : ${result.dateofmed}">
-       	<td th:text="${attendd} ">NAME</td>
-        
-        <td  >True</td>
-      </tr>
-     
-  <tfoot>
-  
-  </tfoot>
-</table>
+<div layout:fragment="main-content">
+<div class="box">
+    Total sessions possible:
+    <div th:text="${result.possibledays}"> Total sessions possible:</div>
+    Total sessions attended:
+    <div th:text="${result.daysattended}"> Total sessions attended:</div>
+    percentage
+    <div th:text="${result.per}"> percentage</div>
 </div>
+    <div class="admin container">
 
+        <table class="table is-fullwidth is-hoverable" id="result">
+            <tr>
+
+                <th> Date</th>
+
+                <th> Present</th>
+
+            </tr>
+
+                    <tr th:each="data : ${result.dateofmed}">
+
+    <td th:text="${data}" ></td>
+    <td th:text ="${result.available}"></td>
+
+        </tr>
+
+
+</table>
+
+</div>
+</div>
 </body>
 </html>

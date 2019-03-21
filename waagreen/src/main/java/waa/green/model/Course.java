@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -121,9 +120,16 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", courseName=" + courseName + ", courseId=" + courseId + ", grade=" + grade
-				+ ", extraGrade=" + extraGrade + ", credit=" + credit + ", faculty=" + faculty + ", students="
-				+ students + ", blocks=" + blocks + "]";
+		return "Course{" +
+				"id=" + id +
+				", courseName='" + courseName + '\'' +
+				", courseId='" + courseId + '\'' +
+				", grade=" + grade +
+				", extraGrade=" + extraGrade +
+				", credit=" + credit +
+				", faculty=" + faculty +
+				", students=" + students +
+				", blocks=" + blocks +
+				'}';
 	}
-
 }
