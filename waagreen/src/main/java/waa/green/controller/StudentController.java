@@ -45,7 +45,7 @@ public class StudentController {
     public String viewProfileModel(Model model) {
         data(model);
 
-        return "student/StudentDetails";
+        return "student/student";
     }
 
     @GetMapping("/studentDetails")

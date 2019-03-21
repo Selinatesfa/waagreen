@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="ISO-8859-1">
     <title>Insert title here</title>
@@ -9,33 +11,7 @@
 
 </head>
 <body>
-
-<nav class="navbar is-dark">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="admin/admin">
-                <h1>ADMIN</h1>
-            </a>
-        </div>
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/faculty/faculty">
-                <h1>FACULTY</h1>
-            </a>
-        </div>
-
-        <div class="navbar-brand">
-            <a class="navbar-item" href="student/student">
-                <h1>STUDENT</h1>
-            </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-end">
-
-            </div>
-        </div>
-    </div>
-</nav>
-<br>
+<div layout:fragment="main-content">
 <div class="admin container">
     <form th:action="@{/admin/entryreport}" th:method="GET">
         <label th:text="ENTRY">ENTRY:</label>
@@ -74,6 +50,7 @@
         </tr>
         </tfoot>
     </table>
+</div>
 </div>
 
 </body>
