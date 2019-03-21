@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Security Tutorial</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Free Bulma template</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.7.4-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bulmastyle.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+<section class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-grey">Login</h3>
+                <p class="subtitle has-text-grey">Please login to proceed.</p>
+                <div class="box">
+                    <figure class="avatar">
+                        <img th:src="@{https://image.flaticon.com/icons/png/128/295/295128.png}">
+                    </figure>
+                    <form th:action="@{/login}" method="post" class="form-signin">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="email" type="email"
+                                       placeholder="Your Email" autofocus="">
+                            </div>
+                        </div>
 
-<div class="container">
-     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" ></h3>
-        <br/>
-
-        <input type="text" id="email" name="email" th:placeholder="Email"
-               class="form-control"/> <br/>
-        <input type="password" th:placeholder="Password"
-               id="password" name="password" class="form-control"/> <br/>
-<input type='checkbox' name="remember-me"/>Remember Me? <br/>
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="password" name="password"
+                                       th:placeholder="Password">
+                            </div>
+                        </div>
+                        <div align="center field" th:if="${error}">
+                            <p>Email or Password invalid, please verify</p>
+                        </div>
+                        <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember-me">
+                                Remember me
+                            </label>
+                        </div>
+                        <input type="submit" class="button is-block is-info is-large is-fullwidth"/>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
-                th:text="Login"></button>
-    </form>
-</div>
+    </div>
+</section>
+<script type="text/javascript" th:src="@{/js/faculty.js}"></script>
 </body>
 </html>

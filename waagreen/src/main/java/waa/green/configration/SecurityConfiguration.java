@@ -2,7 +2,6 @@ package waa.green.configration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,9 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -32,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 //    @Autowired
 //    PersistentTokenRepository persistentTokenRepository;
-    
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -46,12 +43,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                authorizeRequests()
-                .antMatchers("/home").permitAll()
+        http.authorizeRequests()
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/attendance").permitAll()
+                .antMatchers("/home").hasAnyAuthority("STUDENT", "ADMIN","FACULTY")
                 .antMatchers("/student/**").hasAnyAuthority("STUDENT", "ADMIN")
                 .antMatchers("/faculty/**").hasAnyAuthority("FACULTY", "ADMIN")
                 .antMatchers("/Admin/**").hasAuthority("ADMIN").anyRequest()
@@ -60,22 +55,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home", true)
                 .usernameParameter("email")
                 .passwordParameter("password")
-               // .and()
-				//.rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository).tokenValiditySeconds(86400)
-			             .and().logout()
+                // .and()
+                //.rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository).tokenValiditySeconds(86400)
+                .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/access-denied");
         http.rememberMe().key("rem-me-key").rememberMeParameter("remember-me")
-		 .rememberMeCookieName("my-remember-me").tokenValiditySeconds(86400);
+                .rememberMeCookieName("my-remember-me").tokenValiditySeconds(86400);
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/h2-console/**");
     }
-    
+
 
 }

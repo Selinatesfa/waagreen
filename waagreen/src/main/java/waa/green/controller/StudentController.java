@@ -44,22 +44,23 @@ public class StudentController {
     @GetMapping("/student")
     public String viewProfileModel(Model model) {
         data(model);
+<<<<<<< HEAD
 
         return "student/student";
+=======
+        return "student/StudentDetails";
+>>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
     }
 
     @GetMapping("/studentDetails")
     public String showForm(@RequestParam("block") String block, Model model, Authentication authentication) {
         String email = authentication.getName();
         Student stud = studentService.findByEmail(email);
-
         List<Attendance> resultlist = studentService.generatereportbyblock(stud.getId(), block);
-
-
-           // Block bl = blockService.getBlockByNumnerOfBlock(block);
-             //  List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
-            model.addAttribute("result", studentService.calculateextrapoints(resultlist));
-           //  model.addAttribute("blockReportDatas", blockReportDatas);
+        // Block bl = blockService.getBlockByNumnerOfBlock(block);
+        //  List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
+        model.addAttribute("result", studentService.calculateextrapoints(resultlist));
+        //  model.addAttribute("blockReportDatas", blockReportDatas);
 
         Block bl = blockService.getBlockByNumnerOfBlock(block);
         List<BlockReportData> blockReportDatas = blockService.getBlockReportData(bl, stud);
