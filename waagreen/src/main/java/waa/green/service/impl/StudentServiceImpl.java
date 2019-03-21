@@ -1,17 +1,12 @@
 package waa.green.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import waa.green.model.Attendance;
-import waa.green.model.PercentageExtrapoint;
+import waa.green.model.*;
 import waa.green.repository.AttendanceRepository;
-import waa.green.model.Student;
-import waa.green.model.StudentReportDate;
+import waa.green.repository.BlockRepository;
 import waa.green.repository.StudentRepository;
 import waa.green.service.StudentService;
 
@@ -29,6 +24,9 @@ public class StudentServiceImpl implements StudentService {
 	}
     @Autowired
     StudentRepository studentRepository;
+
+//	@Autowired
+//	BlockRepository blockRepository;
     @Override
     public Student getStudentByCode(String code) {
         return studentRepository.getByCodeBarcode(code);
@@ -85,5 +83,6 @@ public class StudentServiceImpl implements StudentService {
 		
 		return result;
 	}
+
 
 }

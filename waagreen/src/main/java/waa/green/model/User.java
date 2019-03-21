@@ -41,7 +41,7 @@ public class User {
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 	@Column(name = "active")
-	private int active;
+	private int active=1;
 	@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

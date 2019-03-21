@@ -10,30 +10,33 @@
             th:href="@{/js/student.js}"></script>
 </head>
 <body>
-<div class="admin container">
- Total sessions possible:   <div th:text="${result.possibledays}">   Total sessions possible:</div>
- Total sessions attended:<div th:text="${result.daysattended}"> Total sessions attended:</div>
- percentage<div th:text="${result.per}"> percentage</div>
- 
-<table class="table is-fullwidth is-hoverable" id="result">
-    <tr>
-    
-      <th> Date</th>
-    
-      <th>Present</th>
-    
-    </tr>
- 
-  <tr th:each="attendd : ${result.dateofmed}">
-       	<td th:text="${attendd} ">NAME</td>
-        
-        <td  >True</td>
-      </tr>
-     
-  <tfoot>
-  
-  </tfoot>
-</table>
+<div >
+    Total sessions possible:
+    <div th:text="${result.possibledays}"> Total sessions possible:</div>
+    Total sessions attended:
+    <div th:text="${result.daysattended}"> Total sessions attended:</div>
+    percentage
+    <div th:text="${result.per}"> percentage</div>
+
+    <table class="table" id="result">
+        <tr>
+
+            <th> Date</th>
+
+            <th>Present</th>
+
+        </tr>
+
+        <tr th:each="data : ${blockReportDatas}">
+            <td th:text="${data.date}">NAME</td>
+
+            <td th:text="${data.present}">True</td>
+        </tr>
+
+        <tfoot>
+
+        </tfoot>
+    </table>
 </div>
 
 </body>

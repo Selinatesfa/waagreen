@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Detail</title>
-    <link href="css/main.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css"/>
+    <link href="css/home.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/home.css}" href="../css/home.css"/>
 </head>
 <body>
-<div id="global">
-    <h4>The student Accumulative information</h4>
+<div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+
+            <h4>The student Accumulative information</h4>
+        </a>
 
 
-   
-    <div>
-        <form th:action="@{/student/studentDetails}" method="get">
-            <select class="blue-margin" name="block">
-                <option value="default">Select block</option>
-                <option th:each="block : ${blockList}" th:value="${block.block}" th:text="${block.block}"></option>
-            </select>
-                    <input th:type="submit" th:value="Submit"/>
-        </form>
+        <div class="dropdown">
+            <form th:action="@{/student/studentDetails}" method="get">
+                <select class="blue-margin" name="block">
+                    <option value="default"><span>Select block</span></option>
+                    <option th:each="block : ${blockList}" th:value="${block.block}"
+                            th:text="${block.block}"></option>
+                </select>
+                <input class="button" th:type="submit" th:value="Submit"/>
+            </form>
 
+        </div>
     </div>
-
-    <div ></div>
-    
-
-
 </div>
-
 </body>
 </html>
