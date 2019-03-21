@@ -11,7 +11,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +26,21 @@ public class Faculty {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "faculty")
     @Fetch(FetchMode.JOIN)
     private List<Course> courses;
-    
-    
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
 }

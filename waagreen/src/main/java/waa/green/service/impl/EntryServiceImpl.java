@@ -7,10 +7,8 @@ import waa.green.repository.AttendanceRepository;
 import waa.green.repository.EntryRepository;
 import waa.green.service.EntryService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class EntryServiceImpl implements EntryService {
     @Autowired
@@ -22,9 +20,9 @@ public class EntryServiceImpl implements EntryService {
     public List<Attendance> generateReportByEntry(Long entryId) {
         return attendanceRepository.generateReportByEntry(entryId);
     }
-    public List<Entry> findAllEntry() {
 
-        return (List<Entry>) entryRepository.findAll();
+    public List<Entry> findAllEntry() {
+        return entryRepository.findAll();
     }
 
     @Override
@@ -36,50 +34,71 @@ public class EntryServiceImpl implements EntryService {
     public Entry findEntryByMonthYear(String monthYear) {
         return entryRepository.findEntryByMonthYear(monthYear);
     }
+
     @Override
     public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
-        double extrapoints=0;
-        double percentage=0;
-        int possibledays=0;
-        List<PercentageExtrapoint> finalreport=new ArrayList<>();
-        HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
-        for(Attendance attend: attendance) {
-            if(!hashresult.containsKey(attend.getStudent())) {
+        double extrapoints = 0;
+        double percentage = 0;
+        int possibledays = 0;
+        Set<Course> studentcourse = new HashSet<>();
+        int noblocks = 0;
+        // Student studentid;
+        List<PercentageExtrapoint> finalreport = new ArrayList<>();
+        HashMap<Student, List<Attendance>> hashresult = new HashMap<>();
+        for (Attendance attend : attendance) {
+            if (!hashresult.containsKey(attend.getStudent())) {
 
-                List<Attendance> list=new ArrayList();
+                List<Attendance> list = new ArrayList();
                 list.add(attend);
                 hashresult.put(attend.getStudent(), list);
-            }
-            else {
+            } else {
                 hashresult.get(attend.getStudent()).add(attend);
             }
         }
-        for(Student atendno:	hashresult.keySet()) {
-            int count= hashresult.get(atendno).size();
+        for (Student atendno : hashresult.keySet()) {
+            extrapoints = 0;
+            noblocks = 0;
+            percentage = 0;
+            studentcourse = hashresult.get(atendno).get(0).getStudent().getCourses();
+            int count = hashresult.get(atendno).size();
 
-            if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks"))
-            {
-                possibledays=10;
-                percentage= (100*count/10);
+
+            List<Course> studentcourselist = new ArrayList<>(studentcourse);
+            for (Course cors : studentcourselist) {
+                List<Block> bl = new ArrayList<>(cors.getBlocks());
+                if (bl.get(0) != null) {
+
+
+                    if (bl.get(0).getSession().getType().equals("2 weeks")) {
+                        System.out.println(noblocks + "2");
+                        noblocks = noblocks + 10;
+                    }
+                    if (bl.get(0).getSession().getType().equals("4 weeks")) {
+                        noblocks = noblocks + 22;
+                        System.out.println(noblocks + "4");
+                    }
+                }
+            }
+            if (noblocks == 0)
+                break;
+            ;
+            if ((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("2 weeks")) {
+                percentage = (100 * count / noblocks);
 
             }
-            if((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks"))
-            {
-                possibledays=22;
-                percentage= (100*count/22);
-                            }
-            if(percentage>=70 && percentage <80) {
-                extrapoints=0.5;
+            if ((hashresult.get(atendno).get(0)).getBlock().getSession().getType().equals("4 weeks")) {
+                percentage = (100 * count / noblocks);
             }
-            if(percentage>=80 && percentage <90) {
-                extrapoints=1;
+            if (percentage >= 70 && percentage < 80) {
+                extrapoints = 0.5;
             }
-            if(percentage>=90 ) {
-                extrapoints=1.5;
-
+            if (percentage >= 80 && percentage < 90) {
+                extrapoints = 1;
             }
-            finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count,possibledays));
-
+            if (percentage >= 90) {
+                extrapoints = 1.5;
+            }
+            finalreport.add(new PercentageExtrapoint(percentage, extrapoints, atendno, count, noblocks));
         }
         return finalreport;
     }

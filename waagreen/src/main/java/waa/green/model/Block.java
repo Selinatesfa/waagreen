@@ -21,7 +21,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 public class Block {
     @Id
