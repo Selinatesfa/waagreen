@@ -1,5 +1,7 @@
 package waa.green.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,11 @@ public class Roleserviceimpl implements RoleService{
 		
 		return roleRepository.save(role);
 	}
+		@Override
+		public List<Role> findrole() {
+			// TODO Auto-generated method stub
+			return roleRepository.findAll();
+		}
+		
 
 }
