@@ -58,6 +58,7 @@
 
         function error(xhr, status, exception) {
             var errorJson = xhr.responseJSON;
+            console.log(errorJson);
             var error = $('#fileError');
             error.html('');
             if (errorJson.errorType == "ValidationError") {
@@ -66,8 +67,8 @@
                 $.each(errorList, function (i, error) {
                     errMsg += (error.message + '<br />');
                 });
-                error.html('');
-                error.html(errMsg)
+                error.text('');
+                error.text(errMsg);
             }
         }
     }
