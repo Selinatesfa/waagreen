@@ -20,6 +20,15 @@ public class Student {
     private String firstName;
     @Column( name = "last_name")
     private String lastName;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entry")
@@ -31,6 +40,14 @@ public class Student {
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
 
     public Code getCode() {
         return code;

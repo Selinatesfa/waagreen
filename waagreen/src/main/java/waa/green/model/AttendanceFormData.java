@@ -3,15 +3,17 @@ package waa.green.model;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public class AttendanceFormData {
     @JsonIgnore
-    private MultipartFile file;
-    @JsonIgnore
-    public MultipartFile getFile() {
-        return file;
+    private List<MultipartFile> files;
+
+    public List<MultipartFile> getFiles() {
+        return files;
     }
 
-    public void setFile(MultipartFile file) {
-        this.file = file;
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
     }
 }
