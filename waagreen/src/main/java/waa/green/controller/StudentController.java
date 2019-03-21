@@ -54,12 +54,13 @@ public class StudentController {
         Student stud = studentService.findByEmail(email);
 
         List<Attendance> resultlist = studentService.generatereportbyblock(stud.getId(), block);
-        model.addAttribute("result", studentService.calculateextrapoints(resultlist));
 
-        Block bl = blockService.getBlockByNumnerOfBlock(block);
-        List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
 
-        model.addAttribute("blockReportDatas", blockReportDatas);
+           // Block bl = blockService.getBlockByNumnerOfBlock(block);
+             //  List<BlockReportData> blockReportDatas= blockService.getBlockReportData(bl, stud);
+            model.addAttribute("result", studentService.calculateextrapoints(resultlist));
+           //  model.addAttribute("blockReportDatas", blockReportDatas);
+
         return "student/Student";
     }
 }
