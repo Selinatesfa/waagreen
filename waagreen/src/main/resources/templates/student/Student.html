@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="ISO-8859-1">
     <title>Computer ProfessionalS Program </title>
     <link href="css/main.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
+    <!--<link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />-->
     <script type="text/javascript"
             th:href="@{/js/student.js}"></script>
 </head>
 <body>
+<div layout:fragment="main-content">
 <div >
     Total sessions possible:
     <div th:text="${result.possibledays}"> Total sessions possible:</div>
@@ -18,26 +21,31 @@
     percentage
     <div th:text="${result.per}"> percentage</div>
 
-    <table class="table" id="result">
+
+
+    <td class="table" id="result">
         <tr>
 
             <th> Date</th>
 
             <th>Present</th>
 
+            <td th:each="data : ${blockReportDatas}"/>
+          //  <td th:text="${data.date}" />
+            <td th:text = "${blockReportDatas.contains(result.dateofmed)}"/>
+
         </tr>
 
-        <tr th:each="data : ${blockReportDatas}">
-            <td th:text="${data.date}">NAME</td>
 
-            <td th:text="${data.present}">True</td>
+    </td>
+    <!--<td th:text="${data.present}">True</td>-->
+    <!--<td th:if="${result.dateofmed}"</td>-->
+    <!--<td th:text="${data.date}">NAME</td>-->
+
         </tr>
 
-        <tfoot>
 
-        </tfoot>
-    </table>
 </div>
-
+</div>
 </body>
 </html>
