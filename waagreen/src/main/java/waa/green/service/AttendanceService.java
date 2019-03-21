@@ -12,7 +12,6 @@ public interface AttendanceService {
     List<Attendance> findAttendancesByEntry(long id);
 
     List<Attendance> registerAttendances(MultipartFile file);
-    List<Attendance> registerAttendances(AttendanceFormData attendanceFormData);
     Attendance findAttendanceForBlockReport(long block_id, long student_id, Date date);
 }
 

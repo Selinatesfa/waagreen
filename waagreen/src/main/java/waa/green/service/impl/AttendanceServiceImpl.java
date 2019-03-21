@@ -8,6 +8,7 @@ import waa.green.formatter.DateFormatter;
 import waa.green.model.Attendance;
 import waa.green.repository.AttendanceRepository;
 import waa.green.service.*;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                     String[] lines = str.split(System.getProperty("line.separator"));
                     for (String line : lines) {
                         String[] columns = line.split(",");
-                        if(columns.length == 4)
+                        if (columns.length == 4)
                             attendances.add(rcData(columns));
                         else
                             attendances.add(manualCheck(columns));
@@ -68,7 +69,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public Attendance findAttendanceForBlockReport(long block_id, long student_id, Date date) {
-        return attendanceRepository.findAttendanceForBlockReport(block_id,student_id,date);
+        return attendanceRepository.findAttendanceForBlockReport(block_id, student_id, date);
     }
 
     private Attendance rcData(String[] columns) {
@@ -95,11 +96,12 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendance.setAttendanceType(attendanceTypeService.findById(1));
         return saveAttendance(attendance, date);
     }
-    private Attendance saveAttendance(Attendance attendance, Date date){
+
+    private Attendance saveAttendance(Attendance attendance, Date date) {
         attendance.setBlock(blockService.getBlockBetween(date));
-        if(attendance.getStudent() != null && attendance.getBlock() != null)
+        if (attendance.getStudent() != null && attendance.getBlock() != null)
             attendance = attendanceRepository.save(attendance);
         return attendance;
     }
 
-    }
+}
