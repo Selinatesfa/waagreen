@@ -1,5 +1,5 @@
 (function () {
-    var URL = "/attendance";
+    var URL = "/admin/attendance";
 
     function loader() {
         $(document).ajaxStart(function () {

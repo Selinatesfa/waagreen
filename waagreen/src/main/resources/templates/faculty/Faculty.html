@@ -3,61 +3,25 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layouts/layout}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
- <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-<script type="text/javascript" src="/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"  ></script>
-<script type="text/javascript" src="/js/faculty.js" th:src="@{/js/faculty.js}"  ></script>
- 
+    <meta charset="UTF-8">
+    <title>Attendance</title>
 </head>
 <body>
-<nav class="navbar is-dark">
-	<div class="container">
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/admin/admin"> 
-			<h1>ADMIN</h1>	
-		</a>
-	</div>
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/faculty/faculty"> 
-		<h1>FACULTY</h1>
-			</a>
-	</div>
-	
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/student/student"> 
-		<h1>STUDENT</h1>
-			</a>
-	</div>
-	<div class="navbar-brand">
-		<a class="navbar-item" href="/admin/attendance"> 
-		<h1>ATTENDANCE</h1>
-			</a>
-	</div>
-	</div>
-   
-    
-</nav>
-<div layout:fragment="main-content">
-<br>
-<div class="admin container">
-<form  >
-<select id="blockid" name="block" class="select">
-<option value=0>Select Block</option>
-<option  th:each="bl : ${block}" th:text="${bl.block}" th:value="${bl.block}" >hjjh</option> 
+<div layout:fragment="main-content"><br>
+    <form>
+        <select id="blockid" name="block" class="select">
+            <option value=0>Select Block</option>
+            <option th:each="bl : ${block}" th:text="${bl.block}" th:value="${bl.block}">hjjh</option>
 
-</select>
-<label></label><select id="courseid"  name="course" class="select">
-<option value=0>Select Course</option>
-<option  th:each= "cr : ${course}" th:text="${cr.courseName}" th:value="${cr.id}">WAA </option></select>
-<input type="button" class="button is-link" value="Report" id="mybtn" />
-</form>
-<table class="table is-fullwidth is-hoverable" id="result">
-    
-</table>
+        </select>
+        <label></label><select id="courseid" name="course" class="select">
+        <option value=0>Select Course</option>
+        <option th:each="cr : ${course}" th:text="${cr.courseName}" th:value="${cr.id}">WAA</option>
+    </select>
+        <input type="button" class="button is-link" value="Report" id="mybtn"/>
+    </form>
+    <table class="table is-fullwidth is-hoverable" id="result">
+    </table>
 </div>
-<form>
-</form>
-  </div>
 </body>
 </html>

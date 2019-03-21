@@ -1,42 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/layout}">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-    <script type="text/javascript"
-            th:href="@{/js/faculty.js}"></script>
-
+    <meta charset="UTF-8">
+    <title>Attendance</title>
 </head>
 <body>
-
-<nav class="navbar is-dark">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="admin/admin">
-                <h1>ADMIN</h1>
-            </a>
-        </div>
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/faculty/faculty">
-                <h1>FACULTY</h1>
-            </a>
-        </div>
-
-        <div class="navbar-brand">
-            <a class="navbar-item" href="student/student">
-                <h1>STUDENT</h1>
-            </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-end">
-
-            </div>
-        </div>
-    </div>
-</nav>
-<br>
-<div class="admin container">
+<div layout:fragment="main-content">
     <form th:action="@{/admin/entryreport}" th:method="GET">
         <label th:text="ENTRY">ENTRY:</label>
         <select name="entry" `>
@@ -75,6 +46,5 @@
         </tfoot>
     </table>
 </div>
-
 </body>
 </html>
