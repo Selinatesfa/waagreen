@@ -36,6 +36,7 @@ public class AttendanceController {
         List<Attendance> attendances = new ArrayList<>();
         if (attendanceFormData != null) {
             System.out.println("Files: " + attendanceFormData.getFiles().size());
+
             for (MultipartFile file : attendanceFormData.getFiles()) {
                 attendances.addAll(attendanceService.registerAttendances(file));
             }

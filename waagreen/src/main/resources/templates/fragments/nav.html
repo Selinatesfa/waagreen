@@ -5,19 +5,34 @@
 <body>
 <nav class="navbar is-dark" role="navigation" th:fragment="nav">
     <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/admin/admin">
-                <h1>ADMIN</h1>
-            </a>
-            <a class="navbar-item" href="/faculty/faculty">
-                <h1>FACULTY</h1>
-            </a>
-            <a class="navbar-item" href="/student/student">
-                <h1>STUDENT</h1>
-            </a>
-            <a class="navbar-item" href="/admin/attendance">
-                <h1>ATTENDANCE</h1>
-            </a>
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/admin/admin">
+                            <h1>ADMIN</h1>
+                        </a>
+                        <a class="navbar-item" href="/faculty/faculty">
+                            <h1>FACULTY</h1>
+                        </a>
+                        <a class="navbar-item" href="/student/student">
+                            <h1>STUDENT</h1>
+                        </a>
+                        <a class="navbar-item" href="/admin/attendance">
+                            <h1>ATTENDANCE</h1>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/logout">
+                            <h1>LOGOUT</h1>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

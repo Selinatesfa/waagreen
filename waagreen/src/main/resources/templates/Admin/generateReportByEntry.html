@@ -4,17 +4,13 @@
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Attendance</title>
+    <title>Report By Entry</title>
 </head>
 <body>
-<div layout:fragment="main-content">
-<<<<<<< HEAD
-<div class="admin container">
-=======
->>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
+<div layout:fragment="main-content"></br>
     <form th:action="@{/admin/entryreport}" th:method="GET">
         <label th:text="ENTRY">ENTRY:</label>
-        <select name="entry" `>
+        <select name="entry" class="select">
             <option th:each="entry:${entries}"
                     th:value="${entry.monthYear}" th:text="${entry.monthYear}"
                     th:selected="${monthYear==entry.monthYear}"></option>
@@ -50,10 +46,5 @@
         </tfoot>
     </table>
 </div>
-<<<<<<< HEAD
-</div>
-
-=======
->>>>>>> branch 'master' of https://selina.tesfabrhan%40gmail.com@github.com/Selinatesfa/waagreen.git
 </body>
 </html>
