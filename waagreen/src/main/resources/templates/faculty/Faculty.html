@@ -3,10 +3,34 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layouts/layout}">
 <head>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bulmastyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/customstyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   
     <meta charset="UTF-8">
     <title>Attendance</title>
 </head>
 <body>
+<nav class="navbar is-dark" role="navigation" th:fragment="nav">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/admin/admin">
+                <h1>ADMIN</h1>
+            </a>
+            <a class="navbar-item" href="/faculty/faculty">
+                <h1>FACULTY</h1>
+            </a>
+            <a class="navbar-item" href="/student/student">
+                <h1>STUDENT</h1>
+            </a>
+            <a class="navbar-item" href="/admin/attendance">
+                <h1>ATTENDANCE</h1>
+            </a>
+        </div>
+    </div>
+</nav>
+
 <div layout:fragment="main-content"><br>
     <form>
         <select id="blockid" name="block" class="select">

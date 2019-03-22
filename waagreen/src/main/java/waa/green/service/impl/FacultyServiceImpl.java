@@ -45,8 +45,9 @@ CourseRepository courserepository;
 		return courserepository.findAll();
 	}
 
-	@OverridercentageExtrapoi
-	public List<Pent> calculateextrapoints(List<Attendance> attendance) {
+	@Override
+	
+	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
 		double extrapoints=0;
 		double percentage=0;
 		int canceldays=0;
