@@ -61,8 +61,8 @@
             console.log(errorJson);
             var error = $('#fileError');
             error.html('');
-            if (errorJson.errorType == "ValidationError") {
-                var errorList = errorObject.responseJSON.errors;
+            if (errorJson.errorType == "FileError") {
+                var errorList = errorJson.errors;
                 var errMsg = '';
                 $.each(errorList, function (i, error) {
                     errMsg += (error.message + '<br />');
