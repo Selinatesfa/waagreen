@@ -26,17 +26,17 @@ public class FacultyServiceImpl implements FacultyService {
 BlockRepository blockrepository;
 @Autowired
 CourseRepository courserepository;
-	
+
 	@Override
 	public List<Attendance> generatereportbycourseandblock(Course coures, String block) {
-		
+
 		return attendacerepositort.generatereportbycourseandblock(coures, block);
 	//return null;
 	}
 
 	@Override
 	public List<Block> getAllBlock() {
-		
+
 		return blockrepository.findAll();
 	}
 
@@ -45,15 +45,15 @@ CourseRepository courserepository;
 		return courserepository.findAll();
 	}
 
-	@Override
-	public List<PercentageExtrapoint> calculateextrapoints(List<Attendance> attendance) {
+	@OverridercentageExtrapoi
+	public List<Pent> calculateextrapoints(List<Attendance> attendance) {
 		double extrapoints=0;
 		double percentage=0;
 		int canceldays=0;
 		Student studis=null;
 
 		int possibledays=0;
-		List<PercentageExtrapoint> finalreport=new ArrayList<>(); 
+		List<PercentageExtrapoint> finalreport=new ArrayList<>();
 		HashMap<Student,List<Attendance>> hashresult=new HashMap<>();
 						for(Attendance attend: attendance) {
 			studis= attend.getStudent();
@@ -89,19 +89,19 @@ if(percentage>=80 && percentage <90) {
 			}
 if(percentage>=90 ) {
 	extrapoints=1.5;
-	
+
 }					finalreport.add(new PercentageExtrapoint(percentage,extrapoints,atendno,count,possibledays));
 					}
-		
+
 		return finalreport;
 	}
 
 	@Override
 	public Optional<Course> findById(Long id) {
-		
+
 		return courserepository.findById(id);
 	}
 
-	
+
 
 }
